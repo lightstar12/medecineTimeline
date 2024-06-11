@@ -1,0 +1,10 @@
+.attributeTable td{
+  border: 1px solid royalblue;
+  padding: 10px;
+  background-color: royalblue;
+  color: white;
+}
+.dataTable td{
+  border: 1px solid black;
+  padding: 10px;
+}
