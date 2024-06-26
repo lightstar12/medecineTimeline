@@ -31,9 +31,9 @@ public class MemberDAO {
 	
 	public void init() throws Exception {
 		try {
-			String jdbcUrl = "jdbc:mysql://localhost:3306/" + _main.mainForm.database + "?serverTimezone=UTC&useSSL=false";
-			String dbId = _main.mainForm.dbId;
-			String dbPw = _main.mainForm.dbPw;
+			String jdbcUrl = "jdbc:mysql://localhost:3306/" + _main.MainFrame.database + "?serverTimezone=UTC&useSSL=false";
+			String dbId = _main.MainFrame.dbId;
+			String dbPw = _main.MainFrame.dbPw;
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
