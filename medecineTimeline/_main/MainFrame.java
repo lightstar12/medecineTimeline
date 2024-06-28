@@ -12,7 +12,7 @@ import javax.swing.border.LineBorder;
 import dao.MemberDAO;
 import dao.TimelineDAO;
 import panel.MenuPanel;
-import panel.View_Panel;
+import panel.ViewPanel;
 
 public class MainFrame{
 	
@@ -28,17 +28,16 @@ public class MainFrame{
 	public static final String dbPw = "root";
 	
 	
-	public MainFrame() {
+	public MainFrame() throws Exception {
 		JFrame mainFrame = new JFrame();
 		
 		mainFrame.setTitle("복약 타임라인");
 		mainFrame.setBounds(LOCATION_X, LOCATION_Y, FRAME_WIDTH, FRAME_HEIGHT);
-		mainFrame.setLayout(new BorderLayout(0, 0));
+		mainFrame.setLayout(new BorderLayout(0, 20));
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		MenuPanel myPanel = new MenuPanel();
-//		myPanel.
-		View_Panel viewPanel = new View_Panel();
+		ViewPanel viewPanel = new ViewPanel();
 		
 		mainFrame.add("North", myPanel);
 		mainFrame.add("Center", viewPanel);
