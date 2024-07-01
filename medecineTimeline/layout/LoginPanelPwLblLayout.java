@@ -3,11 +3,10 @@ package layout;
 import java.awt.Color;
 import java.awt.Font;
 
-import _main.LoginFrame;
 import panel.ViewPanel;
 
-public class ViewPanelUserLblLayout {
-
+public class LoginPanelPwLblLayout {
+	
 	public String lblText;
 	public int lblWidth;
 	public int lblHeight;
@@ -18,17 +17,17 @@ public class ViewPanelUserLblLayout {
 	public Color lblBorderColor;
 	public int lblBorderThickness;
 	
-	public ViewPanelUserLblLayout() {
-
-		this.lblText = LoginFrame.userId + "님";
-		this.lblWidth = 200;
+	public LoginPanelPwLblLayout() {
+		this.lblText = "PW";
+		this.lblWidth = 80;
 		this.lblHeight = 30;
 		this.lblFontType = "";
 		this.lblFontStyle = Font.BOLD;
-		this.lblFontSize = 20;
+		this.lblFontSize = 30;
 		this.lblBackgroundColor = Color.white;
 		this.lblBorderColor = Color.black;
 		this.lblBorderThickness = 0;
 		
 	}
+
 }

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import _main.Index;
 import model.Member;
 
 public class MemberDAO {
@@ -31,9 +32,9 @@ public class MemberDAO {
 	
 	public void init() throws Exception {
 		try {
-			String jdbcUrl = "jdbc:mysql://localhost:3306/" + _main.MainFrame.database + "?serverTimezone=UTC&useSSL=false";
-			String dbId = _main.MainFrame.dbId;
-			String dbPw = _main.MainFrame.dbPw;
+			String jdbcUrl = "jdbc:mysql://localhost:3306/" + Index.database + "?serverTimezone=UTC&useSSL=false";
+			String dbId = Index.dbId;
+			String dbPw = Index.dbPw;
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
@@ -75,6 +76,19 @@ public class MemberDAO {
 			member.pw = pwList[i];
 			member.email = emailList[i];
 			member.phoneNumber = phoneNumberList[i];
+			
+			memberList.add(member);
+			
+//			System.out.println(member.number + " " + member.id + " " + member.firstName + " " + member.lastName + " " + member.pw + " " + member.email + " " + member.phoneNumber);
 		}
+	}
+	
+	public ArrayList<model.Member> getMemberList() {
+		ArrayList<Member> rMemberList = new ArrayList<Member>();
+		for(int i = 0; i < memberSize; i++) {
+			rMemberList.add(memberList.get(i));
+		}
+		
+		return rMemberList;
 	}
 }

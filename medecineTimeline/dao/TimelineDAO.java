@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import _main.Index;
 import model.Timeline;
 
 public class TimelineDAO {
@@ -28,9 +29,9 @@ public class TimelineDAO {
 	
 	public void init() throws Exception {
 		try {
-			String jdbcUrl = "jdbc:mysql://localhost:3306/" + _main.MainFrame.database + "?serverTimezone=UTC&useSSL=false";
-			String dbId = _main.MainFrame.dbId;
-			String dbPw = _main.MainFrame.dbPw;
+			String jdbcUrl = "jdbc:mysql://localhost:3306/" + Index.database + "?serverTimezone=UTC&useSSL=false";
+			String dbId = Index.dbId;
+			String dbPw = Index.dbPw;
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
@@ -66,7 +67,18 @@ public class TimelineDAO {
 			timeline.medecineNumber = medecineNumberList[i];
 			timeline.timeClassfication = timeClassficationList[i];
 			timeline.time = time[i];
+			
+			timelineList.add(timeline);
 		}
+	}
+	
+	public ArrayList<model.Timeline> getTimelineList() {
+		ArrayList<Timeline> rTimelineList = new ArrayList<Timeline>();
+		for(int i = 0; i < timelineSize; i++) {
+			rTimelineList.add(timelineList.get(i));
+		}
+		
+		return rTimelineList;
 	}
 	
 }
