@@ -3,8 +3,7 @@ package layout;
 import java.awt.Color;
 import java.awt.Font;
 
-import _main.LoginFrame;
-import panel.ViewPanel;
+import _main.Index;
 
 public class ViewPanelUserLblLayout {
 
@@ -20,7 +19,7 @@ public class ViewPanelUserLblLayout {
 	
 	public ViewPanelUserLblLayout() {
 
-		this.lblText = LoginFrame.userId + "님";
+		this.lblText = Index.userId + "님";
 		this.lblWidth = 200;
 		this.lblHeight = 30;
 		this.lblFontType = "";

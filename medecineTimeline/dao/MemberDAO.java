@@ -1,50 +1,45 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import _main.Index;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import model.Member;
 
 public class MemberDAO {
-	private MemberDAO() {}
+
+	private MemberDAO() {
+	}
+
 	private static MemberDAO instance = new MemberDAO();
-	public static MemberDAO getInstance() { return MemberDAO.instance; }
+
+	public static MemberDAO getInstance() {
+		return MemberDAO.instance;
+	}
 
 //	멤버 변수
 	ArrayList<Member> memberList;
 	int memberSize;
-	int[] numberList 			= new int[100]; 
-	String[] idList 			= new String[100];
-	String[] firstNameList 		= new String[100];
-	String[] lastNameList 		= new String[100];
-	String[] pwList				= new String[100];
-	String[] emailList			= new String[100];
-	String[] phoneNumberList 	= new String[100];
-	
-//	JDBC연결용 변수
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	
+	int[] numberList = new int[100];
+	String[] idList = new String[100];
+	String[] firstNameList = new String[100];
+	String[] lastNameList = new String[100];
+	String[] pwList = new String[100];
+	String[] emailList = new String[100];
+	String[] phoneNumberList = new String[100];
+
 	public void init() throws Exception {
-		try {
-			String jdbcUrl = "jdbc:mysql://localhost:3306/" + Index.database + "?serverTimezone=UTC&useSSL=false";
-			String dbId = Index.dbId;
-			String dbPw = Index.dbPw;
-			
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
-			
-			String sql = " SELECT * FROM member ";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
+
+		String sql = " SELECT * FROM member ";
+
+		try (DbConnect dbco = new DbConnect();
+				Statement stmt = dbco.getStatement();
+				ResultSet rs = stmt.executeQuery(sql);) {
+
 			int i = 0;
-			while(rs.next()) {
+			while (rs.next()) {
+
 				numberList[i] = rs.getInt(1);
 				idList[i] = rs.getString(2);
 				firstNameList[i] = rs.getString(3);
@@ -52,22 +47,20 @@ public class MemberDAO {
 				pwList[i] = rs.getString(5);
 				emailList[i] = rs.getString(6);
 				phoneNumberList[i] = rs.getString(7);
-				
+
 				i += 1;
+
 			}
-			
+
 			memberSize = i;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			if (conn != null) { conn.close(); }
-			if (pstmt != null) { pstmt.close(); }
-			if (rs != null) { rs.close(); }
 		}
-		
+
 		memberList = new ArrayList<Member>();
-		for(int i = 0; i < memberSize; i++) {
+		for (int i = 0; i < memberSize; i++) {
+			
 			Member member = new Member();
 			member.number = numberList[i];
 			member.id = idList[i];
@@ -76,19 +69,18 @@ public class MemberDAO {
 			member.pw = pwList[i];
 			member.email = emailList[i];
 			member.phoneNumber = phoneNumberList[i];
-			
+
 			memberList.add(member);
-			
-//			System.out.println(member.number + " " + member.id + " " + member.firstName + " " + member.lastName + " " + member.pw + " " + member.email + " " + member.phoneNumber);
+
 		}
 	}
-	
+
 	public ArrayList<model.Member> getMemberList() {
 		ArrayList<Member> rMemberList = new ArrayList<Member>();
-		for(int i = 0; i < memberSize; i++) {
+		for (int i = 0; i < memberSize; i++) {
 			rMemberList.add(memberList.get(i));
 		}
-		
+
 		return rMemberList;
 	}
 }

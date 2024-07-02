@@ -3,57 +3,117 @@ package _main;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import dao.TimelineDAO;
+import panel.DeletePanel;
+import panel.InsertPanel;
 import panel.MenuPanel;
+import panel.UpdatePanel;
 import panel.ViewPanel;
 
-public class MainFrame extends JFrame implements ActionListener {
+public class MainFrame implements ActionListener {
 
 	private static final int FRAME_WIDTH = 1000;
 	private static final int FRAME_HEIGHT = 1000;
-	private static final int LOCATION_X = Index.SCREEN_WIDTH / 2 - FRAME_WIDTH / 2; // 프레임 위치 x축
-	private static final int LOCATION_Y = Index.SCREEN_HEIGHT / 2 - FRAME_HEIGHT / 2; // 프레임 위치 y축
-	
 
-	ArrayList<model.Timeline> TimelineList;
+	JFrame mainFrame;
+	MenuPanel menuPanel;
+	ViewPanel viewPanel;
+	InsertPanel insertPanel;
+	DeletePanel deletePanel;
+	UpdatePanel updatePanel;
 
-	public MainFrame() {
+	public MainFrame() throws Exception {
+		mainFrame = new JFrame();
 
-		setTitle("복약 타임라인");
-		setBounds(LOCATION_X, LOCATION_Y, FRAME_WIDTH, FRAME_HEIGHT);
-		setLayout(new BorderLayout(0, 20));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setTitle("복약 타임라인");
+		mainFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		mainFrame.setLocationRelativeTo(null);
+		mainFrame.setLayout(new BorderLayout(0, 20));
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		MenuPanel menuPanel = new MenuPanel();
-		ViewPanel viewPanel = new ViewPanel();
-		ViewPanel.btnLogout.addActionListener(this);
+		menuPanel = new MenuPanel();
+		for (int i = 0; i < 4; i++) {
 
-		add("North", menuPanel);
-		add("Center", viewPanel);
+			MenuPanel.btnList[i].addActionListener(this);
+		}
 
-		setVisible(true);
-		
-		TimelineList = TimelineDAO.getInstance().getTimelineList();
-		System.out.println(TimelineList.get(0).medecineNumber);
+		viewPanel = new ViewPanel();
+		ViewPanel.logoutBtn.addActionListener(this);
+
+		mainFrame.add("North", menuPanel);
+		mainFrame.add("Center", viewPanel);
+
+		mainFrame.setVisible(true);
+
 	}
-	
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if (e.getSource() == ViewPanel.btnLogout) {
+
+		if (e.getSource() == ViewPanel.logoutBtn) {
+			ViewPanel.logout();
 			MtoL();
+		}
+
+		if (e.getSource() == MenuPanel.btnList[0]) {
+			removePanel();
+			insertPanel = new InsertPanel();
+			mainFrame.add("Center", insertPanel);
+			mainFrame.revalidate();
+		}
+
+		if (e.getSource() == MenuPanel.btnList[1]) {
+			removePanel();
+			try {
+				viewPanel = new ViewPanel();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			mainFrame.add("Center", viewPanel);
+			mainFrame.revalidate();
+
+		}
+
+		if (e.getSource() == MenuPanel.btnList[2]) {
+			removePanel();
+			deletePanel = new DeletePanel();
+			mainFrame.add("Center", deletePanel);
+			mainFrame.revalidate();
+
+		}
+
+		if (e.getSource() == MenuPanel.btnList[3]) {
+			removePanel();
+			updatePanel = new UpdatePanel();
+			mainFrame.add("Center", updatePanel);
+			mainFrame.revalidate();
+
+		}
+
+	}
+	
+	public void removePanel() {
+		
+		if (viewPanel != null) {
+			mainFrame.remove(viewPanel);
+			viewPanel = null;
+		} else if (insertPanel != null) {
+			mainFrame.remove(insertPanel);
+			insertPanel = null;
+		} else if (deletePanel != null) {
+			mainFrame.remove(deletePanel);
+			deletePanel = null;
+		} else if (updatePanel != null) {
+			mainFrame.remove(updatePanel);
+			updatePanel = null;
 		}
 		
 	}
 
-	public void MtoL(){
-		dispose();
+	public void MtoL() {
+		mainFrame.dispose();
 		new LoginFrame();
 	}
 

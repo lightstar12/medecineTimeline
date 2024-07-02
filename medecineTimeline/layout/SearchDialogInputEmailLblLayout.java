@@ -3,7 +3,7 @@ package layout;
 import java.awt.Color;
 import java.awt.Font;
 
-public class LoginPanelIdLblLayout {
+public class SearchDialogInputEmailLblLayout {
 
 	public String lblText;
 	public int lblWidth;
@@ -15,14 +15,14 @@ public class LoginPanelIdLblLayout {
 	public Color lblBorderColor;
 	public int lblBorderThickness;
 	
-	public LoginPanelIdLblLayout() {
+	public SearchDialogInputEmailLblLayout() {
 		
-		this.lblText = "ID";
-		this.lblWidth = 80;
+		this.lblText = "이메일";
+		this.lblWidth = 110;
 		this.lblHeight = 30;
 		this.lblFontType = "";
-		this.lblFontStyle = Font.BOLD;
-		this.lblFontSize = 30;
+		this.lblFontStyle = Font.PLAIN;
+		this.lblFontSize = 20;
 		this.lblBackgroundColor = Color.white;
 		this.lblBorderColor = Color.black;
 		this.lblBorderThickness = 0;

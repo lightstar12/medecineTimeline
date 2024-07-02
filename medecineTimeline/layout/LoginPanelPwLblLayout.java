@@ -3,8 +3,6 @@ package layout;
 import java.awt.Color;
 import java.awt.Font;
 
-import panel.ViewPanel;
-
 public class LoginPanelPwLblLayout {
 	
 	public String lblText;

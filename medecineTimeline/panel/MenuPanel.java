@@ -8,11 +8,14 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import element.*;
-import layout.*;
+import element.ButtonElement;
+import element.LabelElement;
+
+import layout.MenuPanelBtnLayout;
+import layout.MenuPanelLblLayout;
 
 public class MenuPanel extends JPanel{
-	ButtonElement[] btnList = new element.ButtonElement[4];
+	public static ButtonElement[] btnList = new element.ButtonElement[4];
 	LabelElement titleLabel;
 	
 	MenuPanelBtnLayout menuBtnLayout = new MenuPanelBtnLayout();
