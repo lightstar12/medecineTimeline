@@ -38,9 +38,10 @@ public class MainFrame implements ActionListener {
 
 			MenuPanel.btnList[i].addActionListener(this);
 		}
+		
+		menuPanel.logoutBtn.addActionListener(this);
 
 		viewPanel = new ViewPanel();
-		ViewPanel.logoutBtn.addActionListener(this);
 
 		mainFrame.add("North", menuPanel);
 		mainFrame.add("Center", viewPanel);
@@ -52,7 +53,7 @@ public class MainFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource() == ViewPanel.logoutBtn) {
+		if (e.getSource() == MenuPanel.logoutBtn) {
 			ViewPanel.logout();
 			MtoL();
 		}

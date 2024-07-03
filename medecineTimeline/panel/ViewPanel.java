@@ -44,24 +44,6 @@ public class ViewPanel extends JPanel {
 		
 		setLayout(new BorderLayout(70, 20));
 		
-		JPanel statusPanel = new JPanel();
-		statusPanel.setLayout(null);
-		statusPanel.setPreferredSize(new Dimension(0, 30));
-		userLabel = new LabelElement(userLblLayout.lblText, userLblLayout.lblWidth, userLblLayout.lblHeight, 
-									 userLblLayout.lblFontType, userLblLayout.lblFontStyle, userLblLayout.lblFontSize, 
-									 userLblLayout.lblBackgroundColor, userLblLayout.lblBorderColor, userLblLayout.lblBorderThickness);
-		userLabel.setLocation(600, 0);
-		userLabel.setHorizontalAlignment(JLabel.RIGHT);
-		statusPanel.add(userLabel);
-		
-		logoutBtn = new ButtonElement(logoutBtnLayout.btnText, logoutBtnLayout.btnWidth, logoutBtnLayout.btnHeight, 
-									  logoutBtnLayout.btnFontType, logoutBtnLayout.btnFontStyle, logoutBtnLayout.btnFontSize, 
-									  logoutBtnLayout.btnBackgroundColor, logoutBtnLayout.btnBorderColor, logoutBtnLayout.btnBorderThickness);
-		logoutBtn.setLocation(850, 0);
-		statusPanel.add(logoutBtn);
-		
-		add("North", statusPanel);
-		
 		loadData();
 		
 		JPanel viewDataPanel = new JPanel();

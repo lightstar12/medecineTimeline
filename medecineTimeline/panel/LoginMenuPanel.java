@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+import dialog.JoinDialog;
 import dialog.SearchIdDialog;
 import dialog.SearchPwDialog;
 import element.ButtonElement;
@@ -29,6 +30,7 @@ public class LoginMenuPanel extends JPanel implements ActionListener {
 		searchIdBtn = new ButtonElement(searchIdBtnLayout.btnText, searchIdBtnLayout.btnWidth, searchIdBtnLayout.btnHeight,
 				searchIdBtnLayout.btnFontType, searchIdBtnLayout.btnFontStyle, searchIdBtnLayout.btnFontSize,
 				searchIdBtnLayout.btnBackgroundColor, searchIdBtnLayout.btnBorderColor, searchIdBtnLayout.btnBorderThickness);
+//		searchIdBtn = new ButtonElement(new LoginMenuPanelSidBtnLayout());
 		searchIdBtn.setLocation(70, 10);
 		searchIdBtn.addActionListener(this);
 		add(searchIdBtn);
@@ -44,6 +46,7 @@ public class LoginMenuPanel extends JPanel implements ActionListener {
 				joinBtnLayout.btnFontType, joinBtnLayout.btnFontStyle, joinBtnLayout.btnFontSize,
 				joinBtnLayout.btnBackgroundColor, joinBtnLayout.btnBorderColor, joinBtnLayout.btnBorderThickness);
 		joinBtn.setLocation(330, 10);
+		joinBtn.addActionListener(this);
 		add(joinBtn);
 
 	}
@@ -56,6 +59,10 @@ public class LoginMenuPanel extends JPanel implements ActionListener {
 		
 		if(e.getSource() == searchPwBtn) {
 			new SearchPwDialog();
+		}
+		
+		if(e.getSource() == joinBtn) {
+			new JoinDialog();
 		}
 		
 	}

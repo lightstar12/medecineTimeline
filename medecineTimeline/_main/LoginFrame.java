@@ -42,11 +42,8 @@ public class LoginFrame extends JFrame implements ActionListener {
 		loginPanel = new LoginPanel();
 		loginPanel.loginBtn.addActionListener(this);
 		add("Center", loginPanel);
-//
-//		joinBtn = new ButtonElement("회원가입", 100, 30, "", Font.PLAIN, 20, Color.white, Color.black, 1);
-//		joinBtn.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+
 		loginMenuPanel = new LoginMenuPanel();
-		
 		add("South", loginMenuPanel);
 
 		setVisible(true);
