@@ -16,19 +16,17 @@ import dao.MemberDAO;
 
 import element.ButtonElement;
 import element.LabelElement;
-import layout.LoginPanelIdLblLayout;
-import layout.LoginPanelLoginBtnLayout;
-import layout.LoginPanelPwLblLayout;
+import layout.LoginPanelBtnLayout;
+import layout.LoginPanelLblLayout;
 
 public class LoginPanel extends JPanel {
 
 	public ButtonElement loginBtn;
-	LabelElement idLabel, pwLabel;
+	LabelElement idLbl, pwLbl;
 	public static JTextField idTxf, pwTxf;
-	
-	LoginPanelIdLblLayout idLblLayout = new LoginPanelIdLblLayout();
-	LoginPanelPwLblLayout pwLblLayout = new LoginPanelPwLblLayout();
-	LoginPanelLoginBtnLayout loginBtnLayout = new LoginPanelLoginBtnLayout();
+		
+	LoginPanelLblLayout idLblLayout, pwLblLayout;
+	LoginPanelBtnLayout loginBtnLayout;
 
 	public static ArrayList<model.Member> memberList;
 	
@@ -39,11 +37,10 @@ public class LoginPanel extends JPanel {
 		setLayout(null);
 		setPreferredSize(new Dimension(0, 360));
 
-		idLabel = new LabelElement(idLblLayout.lblText, idLblLayout.lblWidth, idLblLayout.lblHeight,
-				idLblLayout.lblFontType, idLblLayout.lblFontStyle, idLblLayout.lblFontSize, idLblLayout.lblBackgroundColor,
-				idLblLayout.lblBorderColor, idLblLayout.lblBorderThickness);
-		idLabel.setLocation(70, 50);
-		add(idLabel);
+		idLblLayout = new LoginPanelLblLayout("ID");
+		idLbl = new LabelElement(idLblLayout);
+		idLbl.setLocation(70, 50);
+		add(idLbl);
 
 		idTxf = new JTextField(5);
 		idTxf.setBounds(150, 50, 260, 30);
@@ -51,11 +48,10 @@ public class LoginPanel extends JPanel {
 		idTxf.setFont(new Font("", Font.PLAIN, 20));
 		add(idTxf);
 
-		pwLabel = new LabelElement(pwLblLayout.lblText, pwLblLayout.lblWidth, pwLblLayout.lblHeight,
-				pwLblLayout.lblFontType, pwLblLayout.lblFontStyle, pwLblLayout.lblFontSize, pwLblLayout.lblBackgroundColor,
-				pwLblLayout.lblBorderColor, pwLblLayout.lblBorderThickness);
-		pwLabel.setLocation(70, 100);
-		add(pwLabel);
+		pwLblLayout = new LoginPanelLblLayout("PW");
+		pwLbl = new LabelElement(pwLblLayout);
+		pwLbl.setLocation(70, 100);
+		add(pwLbl);
 
 		pwTxf = new JPasswordField(5);
 		pwTxf.setBounds(150, 100, 260, 30);
@@ -63,9 +59,8 @@ public class LoginPanel extends JPanel {
 		pwTxf.setFont(new Font("", Font.PLAIN, 20));
 		add(pwTxf);
 
-		loginBtn = new ButtonElement(loginBtnLayout.btnText, loginBtnLayout.btnWidth, loginBtnLayout.btnHeight,
-				loginBtnLayout.btnFontType, loginBtnLayout.btnFontStyle, loginBtnLayout.btnFontSize,
-				loginBtnLayout.btnBackgroundColor, loginBtnLayout.btnBorderColor, loginBtnLayout.btnBorderThickness);
+		loginBtnLayout = new LoginPanelBtnLayout("로그인");
+		loginBtn = new ButtonElement(loginBtnLayout);
 		loginBtn.setLocation(250 - loginBtnLayout.btnWidth / 2, 200);
 		add(loginBtn);
 

@@ -30,7 +30,6 @@ public class LoginMenuPanel extends JPanel implements ActionListener {
 		searchIdBtn = new ButtonElement(searchIdBtnLayout.btnText, searchIdBtnLayout.btnWidth, searchIdBtnLayout.btnHeight,
 				searchIdBtnLayout.btnFontType, searchIdBtnLayout.btnFontStyle, searchIdBtnLayout.btnFontSize,
 				searchIdBtnLayout.btnBackgroundColor, searchIdBtnLayout.btnBorderColor, searchIdBtnLayout.btnBorderThickness);
-//		searchIdBtn = new ButtonElement(new LoginMenuPanelSidBtnLayout());
 		searchIdBtn.setLocation(70, 10);
 		searchIdBtn.addActionListener(this);
 		add(searchIdBtn);
@@ -53,6 +52,7 @@ public class LoginMenuPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		if(e.getSource() == searchIdBtn) {
 			new SearchIdDialog();
 		}

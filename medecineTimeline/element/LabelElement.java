@@ -6,17 +6,19 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
+import layout.LblLayout;
+
 public class LabelElement extends JLabel{
 	
-	String text;
-	int wSize;
-	int hSize;
-	String fontType;
-	int fontStyle;
-	int fontSize;
-	Color backgroundColor;
-	Color borderColor;
-	int borderThickness;
+	public static String text;
+	public static int wSize;
+	public static int hSize;
+	public static String fontType;
+	public static int fontStyle;
+	public static int fontSize;
+	public static Color backgroundColor;
+	public static Color borderColor;
+	public static int borderThickness;
 	
 	public void setLabelText(String text) {
 		this.setText(text);
@@ -55,5 +57,14 @@ public class LabelElement extends JLabel{
 		setLabelFontStyle(fontType, fontStyle, fontSize);
 		setLabelBackgroundColor(backgroundColor);
 		setLabelBorder(borderColor, borderThickness);
+	}
+	
+	public LabelElement(LblLayout layout) {
+		// TODO Auto-generated constructor stub
+		setLabelText(layout.lblText);
+		setLabelSize(layout.lblWidth, layout.lblHeight);
+		setLabelFontStyle(layout.lblFontType, layout.lblFontStyle, layout.lblFontSize);
+		setLabelBackgroundColor(layout.lblBackgroundColor);
+		setLabelBorder(layout.lblBorderColor, layout.lblBorderThickness);
 	}
 }

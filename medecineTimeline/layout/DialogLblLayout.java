@@ -10,6 +10,7 @@ public class DialogLblLayout extends LblLayout {
 	}
 
 	public DialogLblLayout(String text) {
+		// TODO Auto-generated constructor stub
 
 		lblText = text;
 		lblWidth = 100;

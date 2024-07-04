@@ -24,8 +24,11 @@ public class SearchIdDialog implements ActionListener {
 	LabelElement titleLbl, nameLbl, emailLbl, phoneLbl;
 	ButtonElement searchBtn, cancelBtn;
 	static JTextField nameTxf, emailTxf, phoneTxf;
+
+	DialogTitleLblLayout titleLblLayout;
+	DialogLblLayout nameLblLayout, emailLblLayout, phoneLblLayout;
+	DialogBtnLayout searchBtnLayout, cancelBtnLayout;
 	
-	DialogTitleLblLayout titleLblLayout = new DialogTitleLblLayout("아이디 찾기");
 	
 	public SearchIdDialog() {
 		searchIdDialog = new JDialog();
@@ -34,17 +37,14 @@ public class SearchIdDialog implements ActionListener {
 		searchIdDialog.setSize(350, 250);
 		searchIdDialog.setLocationRelativeTo(null);
 
-		titleLbl = new LabelElement(titleLblLayout.lblText, titleLblLayout.lblWidth, titleLblLayout.lblHeight,
-				titleLblLayout.lblFontType, titleLblLayout.lblFontStyle, titleLblLayout.lblFontSize,
-				titleLblLayout.lblBackgroundColor, titleLblLayout.lblBorderColor, titleLblLayout.lblBorderThickness);
+		titleLblLayout = new DialogTitleLblLayout("아이디 찾기");
+		titleLbl = new LabelElement(titleLblLayout);
 		titleLbl.setHorizontalAlignment(JLabel.CENTER);
 		titleLbl.setLocation(100, 10);
 		searchIdDialog.add(titleLbl);
 
-		DialogLblLayout nameLblLayout = new DialogLblLayout("이름");
-		nameLbl = new LabelElement(nameLblLayout.lblText, nameLblLayout.lblWidth, nameLblLayout.lblHeight,
-				nameLblLayout.lblFontType, nameLblLayout.lblFontStyle, nameLblLayout.lblFontSize,
-				nameLblLayout.lblBackgroundColor, nameLblLayout.lblBorderColor, nameLblLayout.lblBorderThickness);
+		nameLblLayout = new DialogLblLayout("이름");
+		nameLbl = new LabelElement(nameLblLayout);
 		nameLbl.setLocation(30, 50);
 		searchIdDialog.add(nameLbl);
 
@@ -52,10 +52,8 @@ public class SearchIdDialog implements ActionListener {
 		nameTxf.setBounds(150, 50, 150, 30);
 		searchIdDialog.add(nameTxf);
 
-		DialogLblLayout emailLblLayout = new DialogLblLayout("이메일");
-		emailLbl = new LabelElement(emailLblLayout.lblText, emailLblLayout.lblWidth, emailLblLayout.lblHeight,
-				emailLblLayout.lblFontType, emailLblLayout.lblFontStyle, emailLblLayout.lblFontSize,
-				emailLblLayout.lblBackgroundColor, emailLblLayout.lblBorderColor, emailLblLayout.lblBorderThickness);
+		emailLblLayout = new DialogLblLayout("이메일");
+		emailLbl = new LabelElement(emailLblLayout);
 		emailLbl.setLocation(30, 90);
 		searchIdDialog.add(emailLbl);
 
@@ -63,10 +61,8 @@ public class SearchIdDialog implements ActionListener {
 		emailTxf.setBounds(150, 90, 150, 30);
 		searchIdDialog.add(emailTxf);
 
-		DialogLblLayout phoneLblLayout = new DialogLblLayout("전화번호");
-		phoneLbl = new LabelElement(phoneLblLayout.lblText, phoneLblLayout.lblWidth, phoneLblLayout.lblHeight,
-				phoneLblLayout.lblFontType, phoneLblLayout.lblFontStyle, phoneLblLayout.lblFontSize,
-				phoneLblLayout.lblBackgroundColor, phoneLblLayout.lblBorderColor, phoneLblLayout.lblBorderThickness);
+		phoneLblLayout = new DialogLblLayout("전화번호");
+		phoneLbl = new LabelElement(phoneLblLayout);
 		phoneLbl.setLocation(30, 130);
 		searchIdDialog.add(phoneLbl);
 
@@ -74,19 +70,14 @@ public class SearchIdDialog implements ActionListener {
 		phoneTxf.setBounds(150, 130, 150, 30);
 		searchIdDialog.add(phoneTxf);
 
-		DialogBtnLayout searchBtnLayout = new DialogBtnLayout("찾기");
-//		searchBtn = new ButtonElement(searchBtnLayout.btnText, searchBtnLayout.btnWidth, searchBtnLayout.btnHeight,
-//				searchBtnLayout.btnFontType, searchBtnLayout.btnFontStyle, searchBtnLayout.btnFontSize,
-//				searchBtnLayout.btnBackgroundColor, searchBtnLayout.btnBorderColor, searchBtnLayout.btnBorderThickness);
+		searchBtnLayout = new DialogBtnLayout("찾기");
 		searchBtn = new ButtonElement(searchBtnLayout);
 		searchBtn.setLocation(75, 170);
 		searchBtn.addActionListener(this);
 		searchIdDialog.add(searchBtn);
 
-		DialogBtnLayout cancelBtnLayout = new DialogBtnLayout("취소");
-		cancelBtn = new ButtonElement(cancelBtnLayout.btnText, cancelBtnLayout.btnWidth, cancelBtnLayout.btnHeight,
-				cancelBtnLayout.btnFontType, cancelBtnLayout.btnFontStyle, cancelBtnLayout.btnFontSize,
-				cancelBtnLayout.btnBackgroundColor, cancelBtnLayout.btnBorderColor, cancelBtnLayout.btnBorderThickness);
+		cancelBtnLayout = new DialogBtnLayout("취소");
+		cancelBtn = new ButtonElement(cancelBtnLayout);
 		cancelBtn.setLocation(175, 170);
 		cancelBtn.addActionListener(this);
 		searchIdDialog.add(cancelBtn);
@@ -155,5 +146,5 @@ public class SearchIdDialog implements ActionListener {
 			}
 		}
 	}
-
+	
 }
