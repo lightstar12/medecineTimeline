@@ -1,5 +1,6 @@
 package panel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,41 +10,38 @@ import javax.swing.JPanel;
 import dialog.JoinDialog;
 import dialog.SearchIdDialog;
 import dialog.SearchPwDialog;
+
 import element.ButtonElement;
 
-import layout.LoginMenuPanelSidBtnLayout;
-import layout.LoginMenuPanelSpwBtnLayout;
-import layout.LoginMenuPanelJoinBtnLayout;
+import layout.LoginMenuBtnLayout;
 
 public class LoginMenuPanel extends JPanel implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
+
 	ButtonElement searchIdBtn, searchPwBtn, joinBtn;
 
-	LoginMenuPanelSidBtnLayout searchIdBtnLayout = new LoginMenuPanelSidBtnLayout();
-	LoginMenuPanelSpwBtnLayout searchPwBtnLayout = new LoginMenuPanelSpwBtnLayout();
-	LoginMenuPanelJoinBtnLayout joinBtnLayout = new LoginMenuPanelJoinBtnLayout();
+	LoginMenuBtnLayout searchIdBtnLayout, searchPwBtnLayout, joinBtnLayout;
 
 	public LoginMenuPanel() {
 		setLayout(null);
 		setPreferredSize(new Dimension(0, 100));
+		setBackground(Color.white);
 
-		searchIdBtn = new ButtonElement(searchIdBtnLayout.btnText, searchIdBtnLayout.btnWidth, searchIdBtnLayout.btnHeight,
-				searchIdBtnLayout.btnFontType, searchIdBtnLayout.btnFontStyle, searchIdBtnLayout.btnFontSize,
-				searchIdBtnLayout.btnBackgroundColor, searchIdBtnLayout.btnBorderColor, searchIdBtnLayout.btnBorderThickness);
+		searchIdBtnLayout = new LoginMenuBtnLayout("ID 찾기");
+		searchIdBtn = new ButtonElement(searchIdBtnLayout);
 		searchIdBtn.setLocation(70, 10);
 		searchIdBtn.addActionListener(this);
 		add(searchIdBtn);
 
-		searchPwBtn = new ButtonElement(searchPwBtnLayout.btnText, searchPwBtnLayout.btnWidth, searchPwBtnLayout.btnHeight,
-				searchPwBtnLayout.btnFontType, searchPwBtnLayout.btnFontStyle, searchPwBtnLayout.btnFontSize,
-				searchPwBtnLayout.btnBackgroundColor, searchPwBtnLayout.btnBorderColor, searchPwBtnLayout.btnBorderThickness);
+		searchPwBtnLayout = new LoginMenuBtnLayout("PW 찾기");
+		searchPwBtn = new ButtonElement(searchPwBtnLayout);
 		searchPwBtn.setLocation(200, 10);
 		searchPwBtn.addActionListener(this);
 		add(searchPwBtn);
 
-		joinBtn = new ButtonElement(joinBtnLayout.btnText, joinBtnLayout.btnWidth, joinBtnLayout.btnHeight,
-				joinBtnLayout.btnFontType, joinBtnLayout.btnFontStyle, joinBtnLayout.btnFontSize,
-				joinBtnLayout.btnBackgroundColor, joinBtnLayout.btnBorderColor, joinBtnLayout.btnBorderThickness);
+		joinBtnLayout = new LoginMenuBtnLayout("회원가입");
+		joinBtn = new ButtonElement(joinBtnLayout);
 		joinBtn.setLocation(330, 10);
 		joinBtn.addActionListener(this);
 		add(joinBtn);

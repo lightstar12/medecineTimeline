@@ -3,16 +3,14 @@ package layout;
 import java.awt.Color;
 import java.awt.Font;
 
-public class LoginMenuBtnLayout extends BtnLayout {
-
-	public LoginMenuBtnLayout() {
+public class MenuBtnLayout extends BtnLayout {
+	public MenuBtnLayout() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public LoginMenuBtnLayout(String text) {
-
+	public MenuBtnLayout(String text) {
+		// TODO Auto-generated constructor stub
 		btnText = text;
-		btnWidth = 100;
+		btnWidth = 200;
 		btnHeight = 30;
 		btnFontType = "";
 		btnFontStyle = Font.PLAIN;
@@ -20,6 +18,6 @@ public class LoginMenuBtnLayout extends BtnLayout {
 		btnBackgroundColor = Color.white;
 		btnBorderColor = Color.black;
 		btnBorderThickness = 1;
-
 	}
+
 }

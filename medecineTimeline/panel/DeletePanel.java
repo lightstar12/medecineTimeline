@@ -6,6 +6,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class DeletePanel extends JPanel{
+
+	private static final long serialVersionUID = 1L;
+
 	public DeletePanel() {
 		setLayout(null);
 		setPreferredSize(new Dimension(0, 100));

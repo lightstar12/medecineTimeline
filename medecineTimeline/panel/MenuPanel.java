@@ -11,63 +11,77 @@ import javax.swing.JPanel;
 import element.ButtonElement;
 import element.LabelElement;
 
-import layout.MenuPanelBtnLayout;
-import layout.MenuPanelLblLayout;
-import layout.ViewPanelLogoutBtnLayout;
-import layout.ViewPanelUserLblLayout;
+import layout.TitleLblLayout;
+import layout.UserLblLayout;
+import layout.LblLayout;
+import layout.LoginBtnLayout;
+import layout.MenuBtnLayout;
 
 public class MenuPanel extends JPanel {
-	public static ButtonElement[] btnList = new element.ButtonElement[4];
-	public static ButtonElement logoutBtn;
-	LabelElement titleLabel, userLabel;
-
-	MenuPanelBtnLayout menuBtnLayout = new MenuPanelBtnLayout();
-	MenuPanelLblLayout titleLblLayout = new MenuPanelLblLayout();
-	ViewPanelUserLblLayout userLblLayout = new ViewPanelUserLblLayout();
-	ViewPanelLogoutBtnLayout logoutBtnLayout = new ViewPanelLogoutBtnLayout();
+	
+	private static final long serialVersionUID = 1L;
+	
+	public static ButtonElement insertBtn, viewBtn, deleteBtn, updateBtn, logoutBtn;
+	LabelElement titleLbl, userLbl;
+	
+	String[] menuBtnList = new String[]{"데이터 조회", "데이터 추가", "데이터 삭제", "데이터 갱신"};
+	
+	TitleLblLayout titleLblLayout;
+	UserLblLayout userLblLayout;
+	MenuBtnLayout insertBtnLayout, viewBtnLayout, deleteBtnLayout, updateBtnLayout;
+	LoginBtnLayout logoutBtnLayout;
 
 	public MenuPanel() {
 		setLayout(new BorderLayout(70, 0));
 
-		titleLabel = new LabelElement(titleLblLayout.lblText, titleLblLayout.lblWidth, titleLblLayout.lblHeight,
-				titleLblLayout.lblFontType, titleLblLayout.lblFontStyle, titleLblLayout.lblFontSize,
-				titleLblLayout.lblBackgroundColor, titleLblLayout.lblBorderColor, titleLblLayout.lblBorderThickness);
-		titleLabel.setHorizontalAlignment(JLabel.CENTER);
-		titleLabel.setBorder(BorderFactory.createEmptyBorder(titleLblLayout.lblMarginTop, titleLblLayout.lblMarginLeft,
-				titleLblLayout.lblMarginBottom, titleLblLayout.lblMarginRight));
-
-		add("North", titleLabel);
+		titleLblLayout = new TitleLblLayout("복약타임라인");
+		LblLayout.setLblFontSize(40);
+		titleLbl = new LabelElement(titleLblLayout);
+		titleLbl.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+		titleLbl.setHorizontalAlignment(JLabel.CENTER);
+		add("North", titleLbl);
 
 		JPanel btnPanel = new JPanel();
 		btnPanel.setLayout(null);
 		btnPanel.setPreferredSize(new Dimension(1000, 70));
 		btnPanel.setBackground(Color.LIGHT_GRAY);
+		btnPanel.setBackground(Color.white);
 
-		for (int i = 0; i < menuBtnLayout.btnMenuTextList.length; i++) {
-			btnList[i] = new ButtonElement(menuBtnLayout.btnMenuTextList[i], menuBtnLayout.btnWidth,
-					menuBtnLayout.btnHeight, menuBtnLayout.btnFontType, menuBtnLayout.btnFontStyle,
-					menuBtnLayout.btnFontSize, menuBtnLayout.btnBackgroundColor, menuBtnLayout.btnBorderColor,
-					menuBtnLayout.btnBorderThickness);
-			btnList[i].setLocation(70 + 220 * i, 20);
-
-			btnPanel.add("Center", btnList[i]);
-		}
-
+		insertBtnLayout = new MenuBtnLayout("데이터 추가");
+		insertBtn = new ButtonElement(insertBtnLayout);
+		insertBtn.setLocation(70, 20);
+		btnPanel.add(insertBtn);
+		
+		viewBtnLayout = new MenuBtnLayout("데이터 조회");
+		viewBtn = new ButtonElement(viewBtnLayout);
+		viewBtn.setLocation(290, 20);
+		btnPanel.add(viewBtn);
+		
+		deleteBtnLayout = new MenuBtnLayout("데이터 삭제");
+		deleteBtn = new ButtonElement(deleteBtnLayout);
+		deleteBtn.setLocation(510, 20);
+		btnPanel.add(deleteBtn);
+		
+		updateBtnLayout = new MenuBtnLayout("데이터 갱신");
+		updateBtn = new ButtonElement(updateBtnLayout);
+		updateBtn.setLocation(730, 20);
+		btnPanel.add(updateBtn);
+		
 		add("Center", btnPanel);
 		
 		JPanel statusPanel = new JPanel();
 		statusPanel.setLayout(null);
 		statusPanel.setPreferredSize(new Dimension(0, 30));
-		userLabel = new LabelElement(userLblLayout.lblText, userLblLayout.lblWidth, userLblLayout.lblHeight, 
-									 userLblLayout.lblFontType, userLblLayout.lblFontStyle, userLblLayout.lblFontSize, 
-									 userLblLayout.lblBackgroundColor, userLblLayout.lblBorderColor, userLblLayout.lblBorderThickness);
-		userLabel.setLocation(600, 0);
-		userLabel.setHorizontalAlignment(JLabel.RIGHT);
-		statusPanel.add(userLabel);
+		statusPanel.setBackground(Color.white);
 		
-		logoutBtn = new ButtonElement(logoutBtnLayout.btnText, logoutBtnLayout.btnWidth, logoutBtnLayout.btnHeight, 
-									  logoutBtnLayout.btnFontType, logoutBtnLayout.btnFontStyle, logoutBtnLayout.btnFontSize, 
-									  logoutBtnLayout.btnBackgroundColor, logoutBtnLayout.btnBorderColor, logoutBtnLayout.btnBorderThickness);
+		userLblLayout = new UserLblLayout();
+		userLbl = new LabelElement(userLblLayout);
+		userLbl.setLocation(600, 0);
+		userLbl.setHorizontalAlignment(JLabel.RIGHT);
+		statusPanel.add(userLbl);
+		
+		logoutBtnLayout = new LoginBtnLayout("로그아웃");
+		logoutBtn = new ButtonElement(logoutBtnLayout);
 		logoutBtn.setLocation(850, 0);
 		statusPanel.add(logoutBtn);
 		

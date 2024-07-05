@@ -1,6 +1,7 @@
 package panel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -19,22 +20,18 @@ import dao.TimelineDAO;
 import element.LabelElement;
 import element.ButtonElement;
 
-import layout.ViewPanelUserLblLayout;
-import layout.ViewPanelLogoutBtnLayout;
-
 public class ViewPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 	
 	LabelElement userLabel;
 	public static ButtonElement logoutBtn;
 
-	final String[] header = { "번호", "구분", "시간" };
+	static final String[] header = { "번호", "구분", "시간" };
 	String[][] contents;
 	int contentSize;
 	
 	int log = Index.log;
-	
-	ViewPanelUserLblLayout userLblLayout = new ViewPanelUserLblLayout();
-	ViewPanelLogoutBtnLayout logoutBtnLayout = new ViewPanelLogoutBtnLayout();
 
 	static ArrayList<model.Timeline> timelineList;
 
@@ -49,6 +46,7 @@ public class ViewPanel extends JPanel {
 		JPanel viewDataPanel = new JPanel();
 		viewDataPanel.setLayout(null);
 		viewDataPanel.setSize(0, 850);
+		viewDataPanel.setBackground(Color.white);
 		
 //		테이블 생성
 		JTable table = new JTable(contents, header);
@@ -79,7 +77,7 @@ public class ViewPanel extends JPanel {
 		table.getTableHeader().setPreferredSize(new Dimension(0, 60));
 		
 		scrollpane.setSize(new Dimension(860, 650));
-		scrollpane.setLocation(70, 0);
+		scrollpane.setLocation(70, 20);
 		viewDataPanel.add(scrollpane);
 		
 		add("Center", viewDataPanel);
@@ -95,10 +93,5 @@ public class ViewPanel extends JPanel {
 			contents[i][1] = TimelineDAO.getInstance().getTimelineList().get(i).timeClassfication;
 			contents[i][2] = TimelineDAO.getInstance().getTimelineList().get(i).time;
 		}
-	}
-	
-	public static void logout() {
-		Index.log = -1;
-		Index.userId = null;
 	}
 }

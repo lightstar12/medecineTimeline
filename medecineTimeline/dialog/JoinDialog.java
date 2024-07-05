@@ -6,9 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JDialog;
@@ -20,10 +17,11 @@ import dao.DbConnect;
 import dao.MemberDAO;
 import element.ButtonElement;
 import element.LabelElement;
-
+import layout.BtnLayout;
 import layout.DialogBtnLayout;
 import layout.DialogLblLayout;
 import layout.DialogTitleLblLayout;
+import layout.LblLayout;
 
 public class JoinDialog implements ActionListener, KeyListener {
 
@@ -54,7 +52,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 		titleLblLayout = new DialogTitleLblLayout("회원가입");
 		titleLbl = new LabelElement(titleLblLayout);
 		titleLbl.setHorizontalAlignment(JLabel.CENTER);
-		titleLbl.setLocation(DialogWidth / 2 - titleLblLayout.getLblWidth() / 2, 10);
+		titleLbl.setLocation(DialogWidth / 2 - LblLayout.getLblWidth() / 2, 10);
 		joinDialog.add(titleLbl);
 
 		idLblLayout = new DialogLblLayout("아이디");
@@ -68,7 +66,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 		joinDialog.add(idTxf);
 
 		checkIdBtnLayout = new DialogBtnLayout("중복확인");
-		checkIdBtnLayout.setBtnWidth(100);
+		BtnLayout.setBtnWidth(100);
 		checkIdBtn = new ButtonElement(checkIdBtnLayout);
 		checkIdBtn.setEnabled(false);
 		checkIdBtn.setLocation(310, 50);
@@ -117,7 +115,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 		joinDialog.add(emailTxf);
 
 		checkEmailBtnLayout = new DialogBtnLayout("중복확인");
-		checkEmailBtnLayout.setBtnWidth(100);
+		BtnLayout.setBtnWidth(100);
 		checkEmailBtn = new ButtonElement(checkEmailBtnLayout);
 		checkEmailBtn.setEnabled(false);
 		checkEmailBtn.setLocation(310, 210);
@@ -136,7 +134,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 		joinDialog.add(phoneTxf);
 
 		checkPhoneBtnLayout = new DialogBtnLayout("중복확인");
-		checkPhoneBtnLayout.setBtnWidth(100);
+		BtnLayout.setBtnWidth(100);
 		checkPhoneBtn = new ButtonElement(checkPhoneBtnLayout);
 		checkPhoneBtn.setEnabled(false);
 		checkPhoneBtn.setLocation(310, 250);
@@ -145,7 +143,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 
 		joinBtnLayout = new DialogBtnLayout("가입");
 		joinBtn = new ButtonElement(joinBtnLayout);
-		joinBtn.setLocation(DialogWidth / 2 - (30 + joinBtnLayout.getBtnWidth()), 290);
+		joinBtn.setLocation(DialogWidth / 2 - (30 + BtnLayout.getBtnWidth()), 290);
 		joinBtn.setEnabled(false);
 		joinBtn.addActionListener(this);
 		joinDialog.add(joinBtn);
@@ -253,7 +251,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 		if (e.getSource() == idTxf) {
 
 			String $inputId = idTxf.getText();
-			boolean checkId = $inputId.matches("^[a-z]{1}[a-z0-9]{5,20}+$");
+			boolean checkId = $inputId.matches("^[a-z]{1}[a-z0-9]{3,20}+$");
 
 			if (checkId) {
 				checkIdBtn.setEnabled(true);
@@ -264,7 +262,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 
 		if (e.getSource() == emailTxf) {
 			String $inputEmail = emailTxf.getText();
-			boolean checkEmail = $inputEmail.matches("^[a-zA-Z0-9]+@[0-9a-zA-Z]+\\.[a-z]+$");
+			boolean checkEmail = $inputEmail.matches("^[0-9a-zA-Z]([-_//.]?[0-9a-zA-Z]*[-_//.])*@[0-9a-zA-Z]([-_//.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$");
 
 			if (checkEmail) {
 				checkEmailBtn.setEnabled(true);

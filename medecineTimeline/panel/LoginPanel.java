@@ -1,5 +1,6 @@
 package panel;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -16,17 +17,20 @@ import dao.MemberDAO;
 
 import element.ButtonElement;
 import element.LabelElement;
-import layout.LoginPanelBtnLayout;
+import layout.BtnLayout;
+import layout.LoginBtnLayout;
 import layout.LoginPanelLblLayout;
 
 public class LoginPanel extends JPanel {
 
+	private static final long serialVersionUID = 1L;
+	
 	public ButtonElement loginBtn;
 	LabelElement idLbl, pwLbl;
 	public static JTextField idTxf, pwTxf;
 		
 	LoginPanelLblLayout idLblLayout, pwLblLayout;
-	LoginPanelBtnLayout loginBtnLayout;
+	LoginBtnLayout loginBtnLayout;
 
 	public static ArrayList<model.Member> memberList;
 	
@@ -36,6 +40,7 @@ public class LoginPanel extends JPanel {
 
 		setLayout(null);
 		setPreferredSize(new Dimension(0, 360));
+		setBackground(Color.white);
 
 		idLblLayout = new LoginPanelLblLayout("ID");
 		idLbl = new LabelElement(idLblLayout);
@@ -43,25 +48,25 @@ public class LoginPanel extends JPanel {
 		add(idLbl);
 
 		idTxf = new JTextField(5);
-		idTxf.setBounds(150, 50, 260, 30);
+		idTxf.setBounds(150, 50, 260, 40);
 		idTxf.setText("lightstar12");
-		idTxf.setFont(new Font("", Font.PLAIN, 20));
+		idTxf.setFont(new Font("", Font.PLAIN, 23));
 		add(idTxf);
 
 		pwLblLayout = new LoginPanelLblLayout("PW");
 		pwLbl = new LabelElement(pwLblLayout);
-		pwLbl.setLocation(70, 100);
+		pwLbl.setLocation(70, 120);
 		add(pwLbl);
 
 		pwTxf = new JPasswordField(5);
-		pwTxf.setBounds(150, 100, 260, 30);
+		pwTxf.setBounds(150, 120, 260, 40);
 		pwTxf.setText("starlight12");
-		pwTxf.setFont(new Font("", Font.PLAIN, 20));
+		pwTxf.setFont(new Font("", Font.PLAIN, 30));
 		add(pwTxf);
 
-		loginBtnLayout = new LoginPanelBtnLayout("로그인");
+		loginBtnLayout = new LoginBtnLayout("로그인");
 		loginBtn = new ButtonElement(loginBtnLayout);
-		loginBtn.setLocation(250 - loginBtnLayout.btnWidth / 2, 200);
+		loginBtn.setLocation(250 - BtnLayout.btnWidth / 2, 200);
 		add(loginBtn);
 
 		memberList = MemberDAO.getInstance().getMemberList();

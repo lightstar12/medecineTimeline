@@ -1,8 +1,6 @@
 package _main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,28 +14,35 @@ import panel.LoginPanel;
 import element.ButtonElement;
 import element.LabelElement;
 
+import layout.TitleLblLayout;
+
 public class LoginFrame extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
+	
 	private static final int FRAME_WIDTH = 500; // 프레임 너비
 	private static final int FRAME_HEIGHT = 500; // 프레임 높이
 
-	LabelElement loginLbl;
+	LabelElement titleLbl;
 	LoginPanel loginPanel;
 	LoginMenuPanel loginMenuPanel;
 	ButtonElement joinBtn;
+	
+	TitleLblLayout titleLblLayout;
 
 	public LoginFrame() {
 
 		setTitle("로그인");
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setLocationRelativeTo(null);
-		setLayout(new BorderLayout(0, 20));
+		setLayout(new BorderLayout(0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		loginLbl = new LabelElement("로그인", 100, 100, "", Font.BOLD, 30, Color.WHITE, Color.black, 0);
-		loginLbl.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
-		loginLbl.setHorizontalAlignment(JLabel.CENTER);
-		add("North", loginLbl);
+		titleLblLayout = new TitleLblLayout("로그인");
+		titleLbl = new LabelElement(titleLblLayout);
+		titleLbl.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+		titleLbl.setHorizontalAlignment(JLabel.CENTER);
+		add("North", titleLbl);
 
 		loginPanel = new LoginPanel();
 		loginPanel.loginBtn.addActionListener(this);

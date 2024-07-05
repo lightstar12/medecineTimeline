@@ -6,6 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class UpdatePanel extends JPanel{
+	
+	private static final long serialVersionUID = 1L;
+	
+
 	public UpdatePanel() {
 		setLayout(null);
 		setPreferredSize(new Dimension(0, 100));

@@ -1,21 +1,22 @@
 package _main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import panel.DeletePanel;
-import panel.InsertPanel;
 import panel.MenuPanel;
-import panel.UpdatePanel;
 import panel.ViewPanel;
+import panel.InsertPanel;
+import panel.DeletePanel;
+import panel.UpdatePanel;
 
 public class MainFrame implements ActionListener {
 
-	private static final int FRAME_WIDTH = 1000;
-	private static final int FRAME_HEIGHT = 1000;
+	public static final int FRAME_WIDTH = 1000;
+	public static final int FRAME_HEIGHT = 1000;
 
 	JFrame mainFrame;
 	MenuPanel menuPanel;
@@ -23,23 +24,22 @@ public class MainFrame implements ActionListener {
 	InsertPanel insertPanel;
 	DeletePanel deletePanel;
 	UpdatePanel updatePanel;
-
+	
 	public MainFrame() throws Exception {
 		mainFrame = new JFrame();
 
 		mainFrame.setTitle("복약 타임라인");
 		mainFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		mainFrame.setLocationRelativeTo(null);
-		mainFrame.setLayout(new BorderLayout(0, 20));
+		mainFrame.setLayout(new BorderLayout(0, 0));
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		menuPanel = new MenuPanel();
-		for (int i = 0; i < 4; i++) {
-
-			MenuPanel.btnList[i].addActionListener(this);
-		}
-		
-		menuPanel.logoutBtn.addActionListener(this);
+		MenuPanel.insertBtn.addActionListener(this);
+		MenuPanel.viewBtn.addActionListener(this);
+		MenuPanel.deleteBtn.addActionListener(this);
+		MenuPanel.updateBtn.addActionListener(this);
+		MenuPanel.logoutBtn.addActionListener(this);
 
 		viewPanel = new ViewPanel();
 
@@ -54,18 +54,18 @@ public class MainFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == MenuPanel.logoutBtn) {
-			ViewPanel.logout();
+			logout();
 			MtoL();
 		}
 
-		if (e.getSource() == MenuPanel.btnList[0]) {
+		if (e.getSource() == MenuPanel.insertBtn) {
 			removePanel();
 			insertPanel = new InsertPanel();
 			mainFrame.add("Center", insertPanel);
 			mainFrame.revalidate();
 		}
 
-		if (e.getSource() == MenuPanel.btnList[1]) {
+		if (e.getSource() == MenuPanel.viewBtn) {
 			removePanel();
 			try {
 				viewPanel = new ViewPanel();
@@ -77,7 +77,7 @@ public class MainFrame implements ActionListener {
 
 		}
 
-		if (e.getSource() == MenuPanel.btnList[2]) {
+		if (e.getSource() == MenuPanel.deleteBtn) {
 			removePanel();
 			deletePanel = new DeletePanel();
 			mainFrame.add("Center", deletePanel);
@@ -85,7 +85,7 @@ public class MainFrame implements ActionListener {
 
 		}
 
-		if (e.getSource() == MenuPanel.btnList[3]) {
+		if (e.getSource() == MenuPanel.updateBtn) {
 			removePanel();
 			updatePanel = new UpdatePanel();
 			mainFrame.add("Center", updatePanel);
@@ -116,6 +116,11 @@ public class MainFrame implements ActionListener {
 	public void MtoL() {
 		mainFrame.dispose();
 		new LoginFrame();
+	}
+	
+	public void logout() {
+		Index.log = -1;
+		Index.userId = null;
 	}
 
 }
