@@ -21,11 +21,11 @@ import layout.BtnLayout;
 import layout.LoginBtnLayout;
 import layout.LoginPanelLblLayout;
 
-public class LoginPanel extends JPanel {
-
-	private static final long serialVersionUID = 1L;
+public class LoginPanel {
 	
-	public ButtonElement loginBtn;
+	public static JPanel loginPanel;
+	
+	public static ButtonElement loginBtn;
 	LabelElement idLbl, pwLbl;
 	public static JTextField idTxf, pwTxf;
 		
@@ -37,39 +37,46 @@ public class LoginPanel extends JPanel {
 	public static boolean loginCheck = false;
 
 	public LoginPanel() {
+		
+		loginPanel = new JPanel();
 
-		setLayout(null);
-		setPreferredSize(new Dimension(0, 360));
-		setBackground(Color.white);
+		loginPanel.setLayout(null);
+		loginPanel.setPreferredSize(new Dimension(0, 360));
+		loginPanel.setBackground(Color.white);
 
 		idLblLayout = new LoginPanelLblLayout("ID");
 		idLbl = new LabelElement(idLblLayout);
 		idLbl.setLocation(70, 50);
-		add(idLbl);
+		loginPanel.add(idLbl);
 
 		idTxf = new JTextField(5);
 		idTxf.setBounds(150, 50, 260, 40);
 		idTxf.setText("lightstar12");
 		idTxf.setFont(new Font("", Font.PLAIN, 23));
-		add(idTxf);
+		loginPanel.add(idTxf);
 
 		pwLblLayout = new LoginPanelLblLayout("PW");
 		pwLbl = new LabelElement(pwLblLayout);
 		pwLbl.setLocation(70, 120);
-		add(pwLbl);
+		loginPanel.add(pwLbl);
 
 		pwTxf = new JPasswordField(5);
 		pwTxf.setBounds(150, 120, 260, 40);
 		pwTxf.setText("starlight12");
 		pwTxf.setFont(new Font("", Font.PLAIN, 30));
-		add(pwTxf);
+		loginPanel.add(pwTxf);
 
 		loginBtnLayout = new LoginBtnLayout("로그인");
 		loginBtn = new ButtonElement(loginBtnLayout);
 		loginBtn.setLocation(250 - BtnLayout.btnWidth / 2, 200);
-		add(loginBtn);
+		loginPanel.add(loginBtn);
 
 		memberList = MemberDAO.getInstance().getMemberList();
+		
+		System.out.println("현재 회원");
+		for(int i = 0; i < memberList.size(); i++) {
+			System.out.println(memberList.get(i).number + " : " +memberList.get(i).id);
+		}
 
 	}
 	public static void tryLogin() {

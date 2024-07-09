@@ -8,57 +8,61 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+
 import panel.LoginMenuPanel;
 import panel.LoginPanel;
+
+import dialog.JoinDialog;
 
 import element.ButtonElement;
 import element.LabelElement;
 
 import layout.TitleLblLayout;
 
-public class LoginFrame extends JFrame implements ActionListener {
-
-	private static final long serialVersionUID = 1L;
+public class LoginFrame implements ActionListener {
 	
 	private static final int FRAME_WIDTH = 500; // 프레임 너비
 	private static final int FRAME_HEIGHT = 500; // 프레임 높이
+	
+	public static JFrame loginFrame;
 
 	LabelElement titleLbl;
-	LoginPanel loginPanel;
 	LoginMenuPanel loginMenuPanel;
 	ButtonElement joinBtn;
 	
 	TitleLblLayout titleLblLayout;
 
 	public LoginFrame() {
+		
+		loginFrame = new JFrame();
 
-		setTitle("로그인");
-		setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		setLocationRelativeTo(null);
-		setLayout(new BorderLayout(0, 0));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		loginFrame.setTitle("로그인");
+		loginFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		loginFrame.setLocationRelativeTo(null);
+		loginFrame.setLayout(new BorderLayout(0, 0));
+		loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		titleLblLayout = new TitleLblLayout("로그인");
 		titleLbl = new LabelElement(titleLblLayout);
 		titleLbl.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		titleLbl.setHorizontalAlignment(JLabel.CENTER);
-		add("North", titleLbl);
+		loginFrame.add("North", titleLbl);
 
-		loginPanel = new LoginPanel();
-		loginPanel.loginBtn.addActionListener(this);
-		add("Center", loginPanel);
+		new LoginPanel();
+		LoginPanel.loginBtn.addActionListener(this);
+		loginFrame.add("Center", LoginPanel.loginPanel);
 
 		loginMenuPanel = new LoginMenuPanel();
-		add("South", loginMenuPanel);
+		loginFrame.add("South", loginMenuPanel);
 
-		setVisible(true);
+		loginFrame.setVisible(true);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource() == loginPanel.loginBtn) {
+		if (e.getSource() == LoginPanel.loginBtn) {
 			LoginPanel.tryLogin();
 			if(LoginPanel.loginCheck) {
 				try {
@@ -68,11 +72,16 @@ public class LoginFrame extends JFrame implements ActionListener {
 				}				
 			}
 		}
+		
+		if (e.getSource() == JoinDialog.joinBtn) {
+			loginFrame.dispose();
+			new LoginFrame();
+		}
 
 	}
 
 	public void LtoM() throws Exception {
-		dispose();
+		loginFrame.dispose();
 		new MainFrame();
 	}
 

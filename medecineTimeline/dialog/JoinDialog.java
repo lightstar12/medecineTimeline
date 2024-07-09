@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import java.sql.PreparedStatement;
+
 import java.util.ArrayList;
 
 import javax.swing.JDialog;
@@ -13,10 +15,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import _main.LoginFrame;
+
 import dao.DbConnect;
 import dao.MemberDAO;
+
 import element.ButtonElement;
 import element.LabelElement;
+
 import layout.BtnLayout;
 import layout.DialogBtnLayout;
 import layout.DialogLblLayout;
@@ -28,7 +34,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 	JDialog joinDialog;
 	LabelElement titleLbl, idLbl, firstnameLbl, lastnameLbl, passwordLbl, emailLbl, phoneLbl;
 	ButtonElement checkIdBtn, checkEmailBtn, checkPhoneBtn;
-	static ButtonElement joinBtn;
+	public static ButtonElement joinBtn;
 	ButtonElement cancelBtn;
 	static JTextField idTxf, firstnameTxf, lastnameTxf, passwordTxf, emailTxf, phoneTxf;
 
@@ -174,7 +180,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 			String $inputPassword = passwordTxf.getText();
 			String $inputEmail = emailTxf.getText();
 			String $inputPhone = phoneTxf.getText();
-			$inputPhone = $inputPhone.substring(0, 3) + $inputPhone.substring(3, 7) + $inputPhone.substring(7, 11);
+			$inputPhone = $inputPhone.substring(0, 3) + "-" + $inputPhone.substring(3, 7) + "-" + $inputPhone.substring(7, 11);
 
 			if ($inputFirstname.equals("")) {
 				JOptionPane.showMessageDialog(null, "이름을 입력해주세요", "회원가입 불가", JOptionPane.ERROR_MESSAGE);
@@ -205,19 +211,16 @@ public class JoinDialog implements ActionListener, KeyListener {
 				pstmt.executeUpdate();
 				
 				JOptionPane.showMessageDialog(null, "환영합니다" + $inputFirstname + " " + $inputLastname + "님!", "가입 성공", JOptionPane.INFORMATION_MESSAGE);
+				MemberDAO.getInstance().init();
+				LoginFrame.loginFrame.dispose();
+				new LoginFrame();
 				joinDialog.dispose();
 				
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			try {
-				MemberDAO.getInstance().init();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			
 		}
 
 		if (e.getSource() == checkIdBtn) {
@@ -262,7 +265,7 @@ public class JoinDialog implements ActionListener, KeyListener {
 
 		if (e.getSource() == emailTxf) {
 			String $inputEmail = emailTxf.getText();
-			boolean checkEmail = $inputEmail.matches("^[0-9a-zA-Z]([-_//.]?[0-9a-zA-Z]*[-_//.])*@[0-9a-zA-Z]([-_//.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$");
+			boolean checkEmail = $inputEmail.matches("^[0-9a-zA-Z]*([-_//.]?[0-9a-zA-Z]*[-_//.])*@[0-9a-zA-Z]([-_//.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$");
 
 			if (checkEmail) {
 				checkEmailBtn.setEnabled(true);
@@ -289,15 +292,12 @@ public class JoinDialog implements ActionListener, KeyListener {
 
 		int i = 0;
 		for (model.Member member : memberList) {
-			System.out.println(member.id);
 			if ($inputId.equals(member.id)) {
 				index = i;
 				break;
 			}
 			i += 1;
 		}
-
-		System.out.println(index);
 
 		if (index == -1) {
 			JOptionPane.showMessageDialog(null, "사용 가능한 ID 입니다", "아이디 사용 가능", JOptionPane.INFORMATION_MESSAGE);

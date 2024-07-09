@@ -1,7 +1,6 @@
 package _main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +18,7 @@ public class MainFrame implements ActionListener {
 	public static final int FRAME_HEIGHT = 1000;
 
 	JFrame mainFrame;
+	
 	MenuPanel menuPanel;
 	ViewPanel viewPanel;
 	InsertPanel insertPanel;

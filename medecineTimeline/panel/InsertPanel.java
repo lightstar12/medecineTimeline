@@ -2,41 +2,44 @@ package panel;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
 
 import element.ButtonElement;
+import element.ComboBoxElement;
 import element.LabelElement;
 
 import layout.LblLayout;
 import layout.InsertTableALayout;
 import layout.InsertTableFLayout;
+import layout.InsertTimeCBLayout;
 import layout.InsertMenuBtnLayout;
 
-public class InsertPanel extends JPanel implements KeyListener {
+public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 
 	LabelElement tableALbl, tableFLbl;
 	ButtonElement insertBtn, initBtn;
 	JTextField numberTxf;
-	JComboBox<String> timeClassficationCB;
+//	JComboBox<String> ;
+	ComboBoxElement<String> timeClassficationCB, timeYearCB, timeMonthCB, timeDayCB, timeHourCB, timeMinuteCB, timeSecondCB;
 	ButtonGroup btnGroup = new ButtonGroup();
-	JRadioButton timeRB;
+	JRadioButton presentTimeRB, optionTimeRB;
 
 	InsertTableALayout tableALayout;
 	InsertTableFLayout tabelFLayout;
 	InsertMenuBtnLayout insertBtnLayout, initBtnLayout;
+	InsertTimeCBLayout timeCBLayout;
+	
 
 	String[] timeC = { "아침", "점심", "저녁" };
 	String[] timeYear = { "2022", "2023", "2024" };
@@ -85,38 +88,65 @@ public class InsertPanel extends JPanel implements KeyListener {
 		numberTxf.addKeyListener(this);
 		add(numberTxf);
 
-		timeClassficationCB = new JComboBox<String>(timeC);
+		timeCBLayout = new InsertTimeCBLayout();
+		timeClassficationCB = new ComboBoxElement<String>(timeC, timeCBLayout);
 		timeClassficationCB.setSelectedIndex(0);
-		timeClassficationCB.setFont(new Font("", Font.PLAIN, 50));
 		timeClassficationCB.setLocation(70 + posX + 10, 168);
-		timeClassficationCB.setSize(150, 70);
-		timeClassficationCB.setBorder(new LineBorder(Color.black, 1));
-		timeClassficationCB.setBackground(Color.white);
 		add(timeClassficationCB);
 
-		timeRB = new JRadioButton("현재시간");
-		timeRB.setFont(new Font("", Font.PLAIN, 50));
-		timeRB.setSize(250, 70);
-		timeRB.setLocation(70 + posX + 10, 274);
-		btnGroup.add(timeRB);
-		add(timeRB);
+		presentTimeRB = new JRadioButton("현재시간");
+		presentTimeRB.setFont(new Font("", Font.PLAIN, 50));
+		presentTimeRB.setSize(250, 70);
+		presentTimeRB.setLocation(70 + posX + 10, 274);
+		presentTimeRB.setSelected(true);
+		presentTimeRB.addActionListener(this);
+		btnGroup.add(presentTimeRB);
+		add(presentTimeRB);
 
-		timeRB = new JRadioButton("임의시간");
-		timeRB.setFont(new Font("", Font.PLAIN, 50));
-		timeRB.setSize(250, 70);
-		timeRB.setLocation(70 + posX + 10, 364);
-		btnGroup.add(timeRB);
-		add(timeRB);
-
-		timeClassficationCB = new JComboBox<String>(timeYear);
-		timeClassficationCB.setSelectedIndex(2);
-		timeClassficationCB.setFont(new Font("", Font.PLAIN, 50));
-		timeClassficationCB.setLocation(70 + posX + 10, 464);
-		timeClassficationCB.setSize(150, 70);
-		timeClassficationCB.setBorder(new LineBorder(Color.black, 1));
-		timeClassficationCB.setBackground(Color.white);
-		timeClassficationCB.setEnabled(false);
-		add(timeClassficationCB);
+		optionTimeRB = new JRadioButton("임의시간");
+		optionTimeRB.setFont(new Font("", Font.PLAIN, 50));
+		optionTimeRB.setSize(250, 70);
+		optionTimeRB.setLocation(70 + posX + 10, 364);
+		optionTimeRB.setSelected(false);
+		optionTimeRB.addActionListener(this);
+		btnGroup.add(optionTimeRB);
+		add(optionTimeRB);
+		
+		timeYearCB = new ComboBoxElement<String>(timeYear, timeCBLayout);
+		timeYearCB.setSelectedIndex(2);
+		timeYearCB.setLocation(70 + posX + 10, 455);
+		timeYearCB.setEnabled(false);
+		add(timeYearCB);
+		
+		timeMonthCB = new ComboBoxElement<String>(timeMonth, timeCBLayout);
+		timeMonthCB.setSelectedIndex(3);
+		timeMonthCB.setLocation(70 + posX + 170, 455);
+		timeMonthCB.setEnabled(false);
+		add(timeMonthCB);
+		
+		timeDayCB = new ComboBoxElement<String>(timeDay, timeCBLayout);
+		timeDayCB.setSelectedIndex(3);
+		timeDayCB.setLocation(70 + posX + 330, 455);
+		timeDayCB.setEnabled(false);
+		add(timeDayCB);
+		
+		timeHourCB = new ComboBoxElement<String>(timeHour, timeCBLayout);
+		timeHourCB.setSelectedIndex(3);
+		timeHourCB.setLocation(70 + posX + 10, 540);
+		timeHourCB.setEnabled(false);
+		add(timeHourCB);
+//		
+		timeMinuteCB = new ComboBoxElement<String>(timeMinute, timeCBLayout);
+		timeMinuteCB.setSelectedIndex(3);
+		timeMinuteCB.setLocation(70 + posX + 170, 540);
+		timeMinuteCB.setEnabled(false);
+		add(timeMinuteCB);
+		
+		timeSecondCB = new ComboBoxElement<String>(timeSecond, timeCBLayout);
+		timeSecondCB.setSelectedIndex(3);
+		timeSecondCB.setLocation(70 + posX + 330, 540);
+		timeSecondCB.setEnabled(false);
+		add(timeSecondCB);
 
 		insertBtnLayout = new InsertMenuBtnLayout("추가");
 		insertBtn = new ButtonElement(insertBtnLayout);
@@ -128,6 +158,21 @@ public class InsertPanel extends JPanel implements KeyListener {
 		initBtn.setLocation(550, 650);
 		add(initBtn);
 
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == presentTimeRB) {
+			timeYearCB.setEnabled(false);
+			timeMonthCB.setEnabled(false);
+		}
+		
+		if(e.getSource() == optionTimeRB) {
+			timeYearCB.setEnabled(true);
+			timeMonthCB.setEnabled(true);
+		}
+		
 	}
 
 	@Override

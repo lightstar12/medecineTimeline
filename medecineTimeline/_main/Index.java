@@ -5,9 +5,7 @@ import javax.swing.JFrame;
 import dao.MemberDAO;
 import dao.TimelineDAO;
 
-public class Index extends JFrame {
-		
-	private static final long serialVersionUID = 1L;
+public class Index {
 	
 	public static final String database = "timeline_db";	// DB명
 	public static final String dbId = "root";							// DB id
@@ -15,13 +13,17 @@ public class Index extends JFrame {
 	
 	public static String userId;
 	public static int log = -1;
+	
+	public static JFrame index;
 
 	public static void main(String[] args) throws Exception {
+		
+		index = new JFrame();
 
 		MemberDAO.getInstance().init();
 		TimelineDAO.getInstance().init();
 		
-		LoginFrame loginFrmae = new LoginFrame(); // 로그인 화면
+		new LoginFrame(); // 로그인 화면
 		
 	}
 
