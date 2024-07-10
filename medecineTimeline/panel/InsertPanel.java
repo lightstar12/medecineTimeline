@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.time.LocalDateTime;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
@@ -31,7 +32,8 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 	ButtonElement insertBtn, initBtn;
 	JTextField numberTxf;
 //	JComboBox<String> ;
-	ComboBoxElement<String> timeClassficationCB, timeYearCB, timeMonthCB, timeDayCB, timeHourCB, timeMinuteCB, timeSecondCB;
+	ComboBoxElement<String> timeClassficationCB, timeYearCB, timeMonthCB, timeDayCB, timeHourCB, timeMinuteCB,
+			timeSecondCB;
 	ButtonGroup btnGroup = new ButtonGroup();
 	JRadioButton presentTimeRB, optionTimeRB;
 
@@ -39,7 +41,6 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 	InsertTableFLayout tabelFLayout;
 	InsertMenuBtnLayout insertBtnLayout, initBtnLayout;
 	InsertTimeCBLayout timeCBLayout;
-	
 
 	String[] timeC = { "아침", "점심", "저녁" };
 	String[] timeYear = { "2022", "2023", "2024" };
@@ -49,15 +50,26 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 	String[] timeHour = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14",
 			"15", "16", "17", "18", "19", "20", "21", "22", "23" };
 	String[] timeMinute = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14",
-			"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "26", "27", "28", "29", "30", "31", "32", "33",
-			"34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-			"52", "53", "54", "55", "56", "57", "58", "59" };
+			"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32",
+			"33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50",
+			"51", "52", "53", "54", "55", "56", "57", "58", "59" };
 	String[] timeSecond = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14",
-			"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "26", "27", "28", "29", "30", "31", "32", "33",
-			"34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51",
-			"52", "53", "54", "55", "56", "57", "58", "59" };
+			"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32",
+			"33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50",
+			"51", "52", "53", "54", "55", "56", "57", "58", "59" };
+
+	LocalDateTime now = LocalDateTime.now();
+	int year = now.getYear();
+	int month = now.getMonthValue();
+	int day = now.getDayOfMonth();
+	int hour = now.getHour();
+	int minute = now.getMinute();
+	int second = now.getSecond();
 
 	public InsertPanel() {
+
+		System.out.println(second);
+
 		setLayout(null);
 		setBackground(Color.white);
 
@@ -111,39 +123,39 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 		optionTimeRB.addActionListener(this);
 		btnGroup.add(optionTimeRB);
 		add(optionTimeRB);
-		
+
 		timeYearCB = new ComboBoxElement<String>(timeYear, timeCBLayout);
 		timeYearCB.setSelectedIndex(2);
 		timeYearCB.setLocation(70 + posX + 10, 455);
 		timeYearCB.setEnabled(false);
 		add(timeYearCB);
-		
+
 		timeMonthCB = new ComboBoxElement<String>(timeMonth, timeCBLayout);
-		timeMonthCB.setSelectedIndex(3);
+		timeMonthCB.setSelectedIndex(month - 1);
 		timeMonthCB.setLocation(70 + posX + 170, 455);
 		timeMonthCB.setEnabled(false);
 		add(timeMonthCB);
-		
+
 		timeDayCB = new ComboBoxElement<String>(timeDay, timeCBLayout);
-		timeDayCB.setSelectedIndex(3);
+		timeDayCB.setSelectedIndex(day - 1);
 		timeDayCB.setLocation(70 + posX + 330, 455);
 		timeDayCB.setEnabled(false);
 		add(timeDayCB);
-		
+
 		timeHourCB = new ComboBoxElement<String>(timeHour, timeCBLayout);
-		timeHourCB.setSelectedIndex(3);
+		timeHourCB.setSelectedIndex(hour);
 		timeHourCB.setLocation(70 + posX + 10, 540);
 		timeHourCB.setEnabled(false);
 		add(timeHourCB);
-//		
+
 		timeMinuteCB = new ComboBoxElement<String>(timeMinute, timeCBLayout);
-		timeMinuteCB.setSelectedIndex(3);
+		timeMinuteCB.setSelectedIndex(minute);
 		timeMinuteCB.setLocation(70 + posX + 170, 540);
 		timeMinuteCB.setEnabled(false);
 		add(timeMinuteCB);
-		
+
 		timeSecondCB = new ComboBoxElement<String>(timeSecond, timeCBLayout);
-		timeSecondCB.setSelectedIndex(3);
+		timeSecondCB.setSelectedIndex(second);
 		timeSecondCB.setLocation(70 + posX + 330, 540);
 		timeSecondCB.setEnabled(false);
 		add(timeSecondCB);
@@ -159,20 +171,28 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 		add(initBtn);
 
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == presentTimeRB) {
+		if (e.getSource() == presentTimeRB) {
 			timeYearCB.setEnabled(false);
 			timeMonthCB.setEnabled(false);
+			timeDayCB.setEnabled(false);
+			timeHourCB.setEnabled(false);
+			timeMinuteCB.setEnabled(false);
+			timeSecondCB.setEnabled(false);
 		}
-		
-		if(e.getSource() == optionTimeRB) {
+
+		if (e.getSource() == optionTimeRB) {
 			timeYearCB.setEnabled(true);
 			timeMonthCB.setEnabled(true);
+			timeDayCB.setEnabled(true);
+			timeHourCB.setEnabled(true);
+			timeMinuteCB.setEnabled(true);
+			timeSecondCB.setEnabled(true);
 		}
-		
+
 	}
 
 	@Override
