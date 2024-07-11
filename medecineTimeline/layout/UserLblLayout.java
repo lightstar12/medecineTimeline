@@ -8,14 +8,13 @@ import _main.Index;
 public class UserLblLayout extends LblLayout {
 	public UserLblLayout() {
 		// TODO Auto-generated constructor stub
-		lblText = Index.userId + "님";
-		lblWidth = 200;
-		lblHeight = 30;
-		lblFontType = "";
-		lblFontStyle = Font.BOLD;
-		lblFontSize = 20;
-		lblBackgroundColor = Color.white;
-		lblBorderColor = Color.black;
-		lblBorderThickness = 0;
+		setLblText(Index.userId + "님");
+		setLblWidth(200);
+		setLblHeight(30);
+		setLblFontType("");
+		setLblFontStyle(Font.BOLD);
+		setLblFontSize(20);
+		setLblBackgroundColor(Color.white);
+		
 	}
 }

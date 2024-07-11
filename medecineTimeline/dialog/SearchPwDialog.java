@@ -24,14 +24,6 @@ public class SearchPwDialog implements ActionListener {
 	LabelElement titleLbl, idLbl, nameLbl, emailLbl, phoneLbl;
 	ButtonElement searchBtn, cancelBtn;
 	static JTextField idTxf, nameTxf, emailTxf, phoneTxf;
-
-//	DialogTitleLblLayout titleLblLayout = new DialogTitleLblLayout("비밀번호 찾기");
-//	DialogLblLayout idLblLayout = new DialogLblLayout("아이디");
-//	DialogLblLayout nameLblLayout = new DialogLblLayout("이름");
-//	DialogLblLayout emailLblLayout = new DialogLblLayout("이메일");
-//	DialogLblLayout phoneLblLayout = new DialogLblLayout("전화번호");
-//	DialogBtnLayout searchBtnLayout = new DialogBtnLayout("찾기");
-//	DialogBtnLayout cancelBtnLayout = new DialogBtnLayout("취소");
 	
 	DialogTitleLblLayout titleLblLayout;
 	DialogLblLayout idLblLayout, nameLblLayout, emailLblLayout, phoneLblLayout;

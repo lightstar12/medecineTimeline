@@ -6,32 +6,35 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.PreparedStatement;
 import java.time.LocalDateTime;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import _main.Index;
+import dao.DbConnect;
+import dao.TimelineDAO;
 import element.ButtonElement;
 import element.ComboBoxElement;
 import element.LabelElement;
 
-import layout.LblLayout;
 import layout.InsertTableALayout;
 import layout.InsertTableFLayout;
 import layout.InsertTimeCBLayout;
 import layout.InsertMenuBtnLayout;
 
-public class InsertPanel extends JPanel implements ActionListener, KeyListener {
-
-	private static final long serialVersionUID = 1L;
+public class InsertPanel implements ActionListener, KeyListener {
+	
+	public static JPanel insertPanel;
 
 	LabelElement tableALbl, tableFLbl;
 	ButtonElement insertBtn, initBtn;
 	JTextField numberTxf;
-//	JComboBox<String> ;
 	ComboBoxElement<String> timeClassficationCB, timeYearCB, timeMonthCB, timeDayCB, timeHourCB, timeMinuteCB,
 			timeSecondCB;
 	ButtonGroup btnGroup = new ButtonGroup();
@@ -42,7 +45,7 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 	InsertMenuBtnLayout insertBtnLayout, initBtnLayout;
 	InsertTimeCBLayout timeCBLayout;
 
-	String[] timeC = { "아침", "점심", "저녁" };
+	String[] timeC = { "선택", "아침", "점심", "저녁" };
 	String[] timeYear = { "2022", "2023", "2024" };
 	String[] timeMonth = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
 	String[] timeDay = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16",
@@ -67,11 +70,11 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 	int second = now.getSecond();
 
 	public InsertPanel() {
+		
+		insertPanel = new JPanel();
 
-		System.out.println(second);
-
-		setLayout(null);
-		setBackground(Color.white);
+		insertPanel.setLayout(null);
+		insertPanel.setBackground(Color.white);
 
 		int posX = 0;
 		int posY = 0;
@@ -81,16 +84,16 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 			tableALbl.setHorizontalAlignment(JLabel.CENTER);
 			tableALbl.setLocation(70, 20 + posY);
 
-			posX = LblLayout.lblWidth;
+			posX = tableALayout.getLblWidth();
 
 			tabelFLayout = new InsertTableFLayout(ViewPanel.header[i]);
 			tableFLbl = new LabelElement(tabelFLayout);
 			tableFLbl.setLocation(70 + posX, 20 + posY);
 			tableFLbl.setOpaque(false);
 
-			posY += LblLayout.lblHeight;
-			add(tableALbl);
-			add(tableFLbl);
+			posY += tableALayout.getLblHeight();
+			insertPanel.add(tableALbl);
+			insertPanel.add(tableFLbl);
 		}
 
 		numberTxf = new JTextField(5);
@@ -98,22 +101,22 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 		numberTxf.setFont(new Font("", Font.PLAIN, 50));
 		numberTxf.setLocation(70 + posX + 10, 46);
 		numberTxf.addKeyListener(this);
-		add(numberTxf);
+		insertPanel.add(numberTxf);
 
 		timeCBLayout = new InsertTimeCBLayout();
 		timeClassficationCB = new ComboBoxElement<String>(timeC, timeCBLayout);
 		timeClassficationCB.setSelectedIndex(0);
 		timeClassficationCB.setLocation(70 + posX + 10, 168);
-		add(timeClassficationCB);
+		insertPanel.add(timeClassficationCB);
 
 		presentTimeRB = new JRadioButton("현재시간");
 		presentTimeRB.setFont(new Font("", Font.PLAIN, 50));
 		presentTimeRB.setSize(250, 70);
 		presentTimeRB.setLocation(70 + posX + 10, 274);
-		presentTimeRB.setSelected(true);
+		presentTimeRB.setSelected(false);
 		presentTimeRB.addActionListener(this);
 		btnGroup.add(presentTimeRB);
-		add(presentTimeRB);
+		insertPanel.add(presentTimeRB);
 
 		optionTimeRB = new JRadioButton("임의시간");
 		optionTimeRB.setFont(new Font("", Font.PLAIN, 50));
@@ -122,58 +125,62 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 		optionTimeRB.setSelected(false);
 		optionTimeRB.addActionListener(this);
 		btnGroup.add(optionTimeRB);
-		add(optionTimeRB);
+		insertPanel.add(optionTimeRB);
 
 		timeYearCB = new ComboBoxElement<String>(timeYear, timeCBLayout);
 		timeYearCB.setSelectedIndex(2);
 		timeYearCB.setLocation(70 + posX + 10, 455);
 		timeYearCB.setEnabled(false);
-		add(timeYearCB);
+		insertPanel.add(timeYearCB);
 
 		timeMonthCB = new ComboBoxElement<String>(timeMonth, timeCBLayout);
 		timeMonthCB.setSelectedIndex(month - 1);
 		timeMonthCB.setLocation(70 + posX + 170, 455);
 		timeMonthCB.setEnabled(false);
-		add(timeMonthCB);
+		insertPanel.add(timeMonthCB);
 
 		timeDayCB = new ComboBoxElement<String>(timeDay, timeCBLayout);
 		timeDayCB.setSelectedIndex(day - 1);
 		timeDayCB.setLocation(70 + posX + 330, 455);
 		timeDayCB.setEnabled(false);
-		add(timeDayCB);
+		insertPanel.add(timeDayCB);
 
 		timeHourCB = new ComboBoxElement<String>(timeHour, timeCBLayout);
 		timeHourCB.setSelectedIndex(hour);
 		timeHourCB.setLocation(70 + posX + 10, 540);
 		timeHourCB.setEnabled(false);
-		add(timeHourCB);
+		insertPanel.add(timeHourCB);
 
 		timeMinuteCB = new ComboBoxElement<String>(timeMinute, timeCBLayout);
 		timeMinuteCB.setSelectedIndex(minute);
 		timeMinuteCB.setLocation(70 + posX + 170, 540);
 		timeMinuteCB.setEnabled(false);
-		add(timeMinuteCB);
+		insertPanel.add(timeMinuteCB);
 
 		timeSecondCB = new ComboBoxElement<String>(timeSecond, timeCBLayout);
 		timeSecondCB.setSelectedIndex(second);
 		timeSecondCB.setLocation(70 + posX + 330, 540);
 		timeSecondCB.setEnabled(false);
-		add(timeSecondCB);
+		insertPanel.add(timeSecondCB);
 
 		insertBtnLayout = new InsertMenuBtnLayout("추가");
 		insertBtn = new ButtonElement(insertBtnLayout);
 		insertBtn.setLocation(250, 650);
-		add(insertBtn);
+		insertBtn.addActionListener(this);
+		insertBtn.setEnabled(false);
+		insertPanel.add(insertBtn);
 
 		initBtnLayout = new InsertMenuBtnLayout("초기화");
 		initBtn = new ButtonElement(initBtnLayout);
 		initBtn.setLocation(550, 650);
-		add(initBtn);
+		initBtn.addActionListener(this);
+		insertPanel.add(initBtn);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		// TODO Auto-generated method stub
 		if (e.getSource() == presentTimeRB) {
 			timeYearCB.setEnabled(false);
@@ -182,6 +189,11 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 			timeHourCB.setEnabled(false);
 			timeMinuteCB.setEnabled(false);
 			timeSecondCB.setEnabled(false);
+			if((numberTxf.getText().length() == 3) && (timeClassficationCB.getSelectedIndex() != 0)) {
+				insertBtn.setEnabled(true);
+			} else {
+				insertBtn.setEnabled(false);
+			}
 		}
 
 		if (e.getSource() == optionTimeRB) {
@@ -191,7 +203,89 @@ public class InsertPanel extends JPanel implements ActionListener, KeyListener {
 			timeHourCB.setEnabled(true);
 			timeMinuteCB.setEnabled(true);
 			timeSecondCB.setEnabled(true);
+			if((numberTxf.getText().length() == 3) && (timeClassficationCB.getSelectedIndex() != 0)) {
+				insertBtn.setEnabled(true);
+			} else {
+				insertBtn.setEnabled(false);
+			}
 		}
+		
+		if (e.getSource() == insertBtn) {
+	
+			String $inputNumber = numberTxf.getText();
+			String $inputTimeC = (String) timeClassficationCB.getSelectedItem();
+			
+			String strYear = "";
+			String strMonth = "";
+			String strDay = "";
+			String strHour = "";
+			String strMinute = "";
+			String strSecond = "";
+			
+			if (presentTimeRB.isSelected()) {
+				now = LocalDateTime.now();
+				strYear = now.getYear() + "";
+				strMonth = now.getMonthValue() + "";
+				strDay = now.getDayOfMonth() + "";
+				strHour = now.getHour() + "";
+				strMinute = now.getMinute() + "";
+				strSecond = now.getSecond() + "";
+				
+				if(strMonth.length() < 2) {
+					strMonth = "0" + strMonth;
+				}
+				if(strDay.length() < 2) {
+					strDay = "0" + strDay;
+				}
+				if(strHour.length() < 2) {
+					strHour = "0" + strHour;
+				}
+				if(strMinute.length() < 2) {
+					strMinute = "0" + strMinute;
+				}
+				if(strSecond.length() < 2) {
+					strSecond = "0" + strSecond;
+				}
+			}
+			if (optionTimeRB.isSelected()) {
+				strYear = (String) timeYearCB.getSelectedItem();
+				strMonth = (String) timeMonthCB.getSelectedItem();
+				strDay = (String) timeDayCB.getSelectedItem();
+				strHour = (String) timeHourCB.getSelectedItem();
+				strMinute = (String) timeMinuteCB.getSelectedItem();
+				strSecond = (String) timeSecondCB.getSelectedItem();
+			}
+			
+			String $inputTime = String.format("%s-%s-%s %s:%s:%s", strYear, strMonth, strDay, strHour, strMinute, strSecond);
+			
+			String sql = " INSERT INTO timeline(number, medecine_number, time_classfication, time)";
+			sql += " VALUES(?, ?, ?, ?) ";
+			
+			try(
+					DbConnect dbc = new DbConnect();
+					PreparedStatement pstmt = dbc.getPrepare(sql);
+					) {
+				pstmt.setInt(1, Index.log);
+				pstmt.setString(2, $inputNumber);
+				pstmt.setString(3, $inputTimeC);
+				pstmt.setString(4, $inputTime);
+				pstmt.executeUpdate();
+				
+				JOptionPane.showMessageDialog(null, "데이터가 추가 되었습니다.", "데이터 추가 성공", JOptionPane.INFORMATION_MESSAGE);
+				TimelineDAO.getInstance().init();
+	
+				
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		if (e.getSource() == initBtn) {
+			numberTxf.setText("");
+			timeClassficationCB.setSelectedIndex(0);
+		}
+		
 
 	}
 

@@ -10,20 +10,15 @@ public class InsertMenuBtnLayout extends BtnLayout {
 
 	public InsertMenuBtnLayout(String text) {
 		// TODO Auto-generated constructor stub
-		if (text.equals("추가")) {
-			btnText = text;
-		} else if (text.equals("초기화")) {
-			btnText = text;
-		} else {
-			return;
-		}
-		btnWidth = 200;
-		btnHeight = 50;
-		btnFontType = "";
-		btnFontStyle = Font.PLAIN;
-		btnFontSize = 30;
-		btnBackgroundColor = Color.white;
-		btnBorderColor = Color.black;
-		btnBorderThickness = 1;
+		setBtnText(text);
+		setBtnWidth(200);
+		setBtnHeight(50);
+		setBtnFontType("");
+		setBtnFontStyle(Font.PLAIN);
+		setBtnFontSize(30);
+		setBtnBackgroundColor(Color.white);
+		setBtnBorderColor(Color.black);
+		setBtnBorderThickness(1);
+		
 	}
 }

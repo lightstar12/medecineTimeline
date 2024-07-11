@@ -10,15 +10,13 @@ public class LoginPanelLblLayout extends LblLayout {
 	
 	public LoginPanelLblLayout(String text) {
 		// TODO Auto-generated constructor stub
-		
-		lblText = text;
-		lblWidth = 80;
-		lblHeight = 40;
-		lblFontType = "";
-		lblFontStyle = Font.BOLD;
-		lblFontSize = 40;
-		lblBackgroundColor = Color.white;
-		lblBorderColor = Color.black;
-		lblBorderThickness = 0;
+		setLblText(text);
+		setLblWidth(80);
+		setLblHeight(40);
+		setLblFontType("");
+		setLblFontStyle(Font.BOLD);
+		setLblFontSize(40);
+		setLblBackgroundColor(Color.white);
+
 	}
 }

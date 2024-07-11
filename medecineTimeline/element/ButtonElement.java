@@ -8,9 +8,8 @@ import javax.swing.border.LineBorder;
 
 import layout.BtnLayout;
 
+@SuppressWarnings("serial")
 public class ButtonElement extends JButton {
-
-	private static final long serialVersionUID = 1L;
 
 	public void setButtonText(String text) {
 		this.setText(text);
@@ -31,14 +30,14 @@ public class ButtonElement extends JButton {
 	public void setButtonBorder(Color borderColor, int borderThickness) {
 		this.setBorder(new LineBorder(borderColor, borderThickness));
 	}
-	
+
 	public ButtonElement(BtnLayout layout) {
 		// TODO Auto-generated constructor stub
-		setButtonText(BtnLayout.btnText);
-		setButtonSize(BtnLayout.btnWidth, BtnLayout.btnHeight);
-		setButtonFontStyle(BtnLayout.btnFontType, BtnLayout.btnFontStyle, BtnLayout.btnFontSize);
-		setButtonBackgroundColor(BtnLayout.btnBackgroundColor);
-		setButtonBorder(BtnLayout.btnBorderColor, BtnLayout.btnBorderThickness);
+		setButtonText(layout.getBtnText());
+		setButtonSize(layout.getBtnWidth(), layout.getBtnHeight());
+		setButtonFontStyle(layout.getBtnFontType(), layout.getBtnFontStyle(), layout.getBtnFontSize());
+		setButtonBackgroundColor(layout.getBtnBackgroundColor());
+		setButtonBorder(layout.getBtnBorderColor(), layout.getBtnBorderThickness());
 	}
 
 }

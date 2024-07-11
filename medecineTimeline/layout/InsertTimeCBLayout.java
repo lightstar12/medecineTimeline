@@ -7,14 +7,15 @@ public class InsertTimeCBLayout extends CBLayout {
 	
 	public InsertTimeCBLayout() {
 		// TODO Auto-generated constructor stub
-		cbWidth = 150;
-		cbHeight = 70;
-		cbFontType = "";
-		cbFontStyle = Font.PLAIN;
-		cbFontSize = 50;
-		cbBackgroundColor = Color.white;
-		cbBorderColor = Color.black;
-		cbBorderThickness = 1;
+		setCbWidth(150);
+		setCbHeight(70);
+		setCbFontType("");
+		setCbFontStyle(Font.PLAIN);
+		setCbFontSize(50);
+		setCbBackgroundColor(Color.white);
+		setCbBorderColor(Color.black);
+		setCbBorderThickness(1);
+		
 	}
 	
 }

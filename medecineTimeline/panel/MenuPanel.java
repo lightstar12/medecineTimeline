@@ -13,14 +13,13 @@ import element.LabelElement;
 
 import layout.TitleLblLayout;
 import layout.UserLblLayout;
-import layout.LblLayout;
 import layout.LoginBtnLayout;
 import layout.MenuBtnLayout;
 
-public class MenuPanel extends JPanel {
+public class MenuPanel {
 	
-	private static final long serialVersionUID = 1L;
-	
+	public static JPanel menuPanel;
+
 	public static ButtonElement insertBtn, viewBtn, deleteBtn, updateBtn, logoutBtn;
 	LabelElement titleLbl, userLbl;
 	
@@ -32,14 +31,17 @@ public class MenuPanel extends JPanel {
 	LoginBtnLayout logoutBtnLayout;
 
 	public MenuPanel() {
-		setLayout(new BorderLayout(70, 0));
+		
+		menuPanel = new JPanel();
+		
+		menuPanel.setLayout(new BorderLayout(70, 0));
 
 		titleLblLayout = new TitleLblLayout("복약타임라인");
-		LblLayout.setLblFontSize(40);
+		titleLblLayout.setLblFontSize(40);
 		titleLbl = new LabelElement(titleLblLayout);
 		titleLbl.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 		titleLbl.setHorizontalAlignment(JLabel.CENTER);
-		add("North", titleLbl);
+		menuPanel.add("North", titleLbl);
 
 		JPanel btnPanel = new JPanel();
 		btnPanel.setLayout(null);
@@ -67,7 +69,7 @@ public class MenuPanel extends JPanel {
 		updateBtn.setLocation(730, 20);
 		btnPanel.add(updateBtn);
 		
-		add("Center", btnPanel);
+		menuPanel.add("Center", btnPanel);
 		
 		JPanel statusPanel = new JPanel();
 		statusPanel.setLayout(null);
@@ -85,7 +87,7 @@ public class MenuPanel extends JPanel {
 		logoutBtn.setLocation(850, 0);
 		statusPanel.add(logoutBtn);
 		
-		add("South", statusPanel);
+		menuPanel.add("South", statusPanel);
 	}
 
 }

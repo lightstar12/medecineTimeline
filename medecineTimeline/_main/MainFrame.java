@@ -1,6 +1,7 @@
 package _main;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,8 +15,8 @@ import panel.UpdatePanel;
 
 public class MainFrame implements ActionListener {
 
-	public static final int FRAME_WIDTH = 1000;
-	public static final int FRAME_HEIGHT = 1000;
+	private static final int FRAME_WIDTH = 1000;
+	private static final int FRAME_HEIGHT = 1000;
 
 	JFrame mainFrame;
 	
@@ -34,17 +35,17 @@ public class MainFrame implements ActionListener {
 		mainFrame.setLayout(new BorderLayout(0, 0));
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		menuPanel = new MenuPanel();
+		new MenuPanel();
 		MenuPanel.insertBtn.addActionListener(this);
 		MenuPanel.viewBtn.addActionListener(this);
 		MenuPanel.deleteBtn.addActionListener(this);
 		MenuPanel.updateBtn.addActionListener(this);
 		MenuPanel.logoutBtn.addActionListener(this);
 
-		viewPanel = new ViewPanel();
+		new ViewPanel();
 
-		mainFrame.add("North", menuPanel);
-		mainFrame.add("Center", viewPanel);
+		mainFrame.add("North", MenuPanel.menuPanel);
+		mainFrame.add("Center", ViewPanel.viewPanel);
 
 		mainFrame.setVisible(true);
 
@@ -60,35 +61,36 @@ public class MainFrame implements ActionListener {
 
 		if (e.getSource() == MenuPanel.insertBtn) {
 			removePanel();
-			insertPanel = new InsertPanel();
-			mainFrame.add("Center", insertPanel);
+			new InsertPanel();
+			mainFrame.add("Center", InsertPanel.insertPanel);
 			mainFrame.revalidate();
+			
 		}
 
 		if (e.getSource() == MenuPanel.viewBtn) {
 			removePanel();
 			try {
-				viewPanel = new ViewPanel();
+				new ViewPanel();
+				mainFrame.add("Center", ViewPanel.viewPanel);
+				mainFrame.revalidate();
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			mainFrame.add("Center", viewPanel);
-			mainFrame.revalidate();
-
+			
 		}
 
 		if (e.getSource() == MenuPanel.deleteBtn) {
 			removePanel();
-			deletePanel = new DeletePanel();
-			mainFrame.add("Center", deletePanel);
+			new DeletePanel();
+			mainFrame.add("Center", DeletePanel.deletePanel);
 			mainFrame.revalidate();
 
 		}
 
 		if (e.getSource() == MenuPanel.updateBtn) {
 			removePanel();
-			updatePanel = new UpdatePanel();
-			mainFrame.add("Center", updatePanel);
+			new UpdatePanel();
+			mainFrame.add("Center", UpdatePanel.updatePanel);
 			mainFrame.revalidate();
 
 		}
@@ -98,16 +100,16 @@ public class MainFrame implements ActionListener {
 	public void removePanel() {
 		
 		if (viewPanel != null) {
-			mainFrame.remove(viewPanel);
+			mainFrame.remove(ViewPanel.viewPanel);
 			viewPanel = null;
 		} else if (insertPanel != null) {
-			mainFrame.remove(insertPanel);
+			mainFrame.remove(InsertPanel.insertPanel);
 			insertPanel = null;
 		} else if (deletePanel != null) {
-			mainFrame.remove(deletePanel);
+			mainFrame.remove(DeletePanel.deletePanel);
 			deletePanel = null;
 		} else if (updatePanel != null) {
-			mainFrame.remove(updatePanel);
+			mainFrame.remove(UpdatePanel.updatePanel);
 			updatePanel = null;
 		}
 		

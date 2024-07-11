@@ -10,16 +10,16 @@ public class LoginMenuBtnLayout extends BtnLayout {
 	}
 
 	public LoginMenuBtnLayout(String text) {
-
-		btnText = text;
-		btnWidth = 100;
-		btnHeight = 30;
-		btnFontType = "";
-		btnFontStyle = Font.PLAIN;
-		btnFontSize = 20;
-		btnBackgroundColor = Color.white;
-		btnBorderColor = Color.black;
-		btnBorderThickness = 1;
+		
+		setBtnText(text);
+		setBtnWidth(100);
+		setBtnHeight(30);
+		setBtnFontType("");
+		setBtnFontStyle(Font.PLAIN);
+		setBtnFontSize(20);
+		setBtnBackgroundColor(Color.white);
+		setBtnBorderColor(Color.black);
+		setBtnBorderThickness(1);
 
 	}
 }

@@ -5,18 +5,20 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class UpdatePanel extends JPanel{
+public class UpdatePanel {
 	
-	private static final long serialVersionUID = 1L;
-	
+	public static JPanel updatePanel;
 
 	public UpdatePanel() {
-		setLayout(null);
-		setPreferredSize(new Dimension(0, 100));
+		
+		updatePanel = new JPanel();
+		
+		updatePanel.setLayout(null);
+		updatePanel.setPreferredSize(new Dimension(0, 100));
 		
 		JLabel testLbl = new JLabel("데이터 갱신 패널");
 		testLbl.setSize(100, 50);
 		testLbl.setLocation(0, 0);
-		add(testLbl);
+		updatePanel.add(testLbl);
 	}
 }

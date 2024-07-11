@@ -17,7 +17,7 @@ import dao.MemberDAO;
 
 import element.ButtonElement;
 import element.LabelElement;
-import layout.BtnLayout;
+
 import layout.LoginBtnLayout;
 import layout.LoginPanelLblLayout;
 
@@ -68,15 +68,10 @@ public class LoginPanel {
 
 		loginBtnLayout = new LoginBtnLayout("로그인");
 		loginBtn = new ButtonElement(loginBtnLayout);
-		loginBtn.setLocation(250 - BtnLayout.btnWidth / 2, 200);
+		loginBtn.setLocation(250 - loginBtnLayout.getBtnWidth() / 2, 200);
 		loginPanel.add(loginBtn);
 
 		memberList = MemberDAO.getInstance().getMemberList();
-		
-		System.out.println("현재 회원");
-		for(int i = 0; i < memberList.size(); i++) {
-			System.out.println(memberList.get(i).number + " : " +memberList.get(i).id);
-		}
 
 	}
 	public static void tryLogin() {

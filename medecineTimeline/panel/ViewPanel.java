@@ -20,10 +20,10 @@ import dao.TimelineDAO;
 import element.LabelElement;
 import element.ButtonElement;
 
-public class ViewPanel extends JPanel {
-
-	private static final long serialVersionUID = 1L;
+public class ViewPanel {
 	
+	public static JPanel viewPanel;
+
 	LabelElement userLabel;
 	public static ButtonElement logoutBtn;
 
@@ -37,9 +37,11 @@ public class ViewPanel extends JPanel {
 
 	public ViewPanel() throws Exception {
 		
+		viewPanel = new JPanel();
+		
 		TimelineDAO.getInstance().init();
 		
-		setLayout(new BorderLayout(70, 20));
+		viewPanel.setLayout(new BorderLayout(70, 20));
 		
 		loadData();
 		
@@ -80,7 +82,7 @@ public class ViewPanel extends JPanel {
 		scrollpane.setLocation(70, 20);
 		viewDataPanel.add(scrollpane);
 		
-		add("Center", viewDataPanel);
+		viewPanel.add("Center", viewDataPanel);
 	}
 
 	public void loadData() {

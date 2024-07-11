@@ -3,86 +3,86 @@ package layout;
 import java.awt.Color;
 
 public class BtnLayout {
-	public static String btnText;
-	public static int btnWidth;
-	public static int btnHeight;
-	public static String btnFontType;
-	public static int btnFontStyle;
-	public static int btnFontSize;
-	public static Color btnBackgroundColor;
-	public static Color btnBorderColor;
-	public static int btnBorderThickness;
+	private String btnText;
+	private int btnWidth;
+	private int btnHeight;
+	private String btnFontType;
+	private int btnFontStyle;
+	private int btnFontSize;
+	private Color btnBackgroundColor;
+	private Color btnBorderColor;
+	private int btnBorderThickness;
 
-	public static String getBtnText() {
+	public String getBtnText() {
 		return btnText;
 	}
 
-	public static void setBtnText(String btnText) {
-		BtnLayout.btnText = btnText;
+	public void setBtnText(String btnText) {
+		this.btnText = btnText;
 	}
 
-	public static int getBtnWidth() {
+	public int getBtnWidth() {
 		return btnWidth;
 	}
 
-	public static void setBtnWidth(int btnWidth) {
-		BtnLayout.btnWidth = btnWidth;
+	public void setBtnWidth(int btnWidth) {
+		this.btnWidth = btnWidth;
 	}
 
-	public static int getBtnHeight() {
+	public int getBtnHeight() {
 		return btnHeight;
 	}
 
-	public static void setBtnHeight(int btnHeight) {
-		BtnLayout.btnHeight = btnHeight;
+	public void setBtnHeight(int btnHeight) {
+		this.btnHeight = btnHeight;
 	}
 
-	public static String getBtnFontType() {
+	public String getBtnFontType() {
 		return btnFontType;
 	}
 
-	public static void setBtnFontType(String btnFontType) {
-		BtnLayout.btnFontType = btnFontType;
+	public void setBtnFontType(String btnFontType) {
+		this.btnFontType = btnFontType;
 	}
 
-	public static int getBtnFontStyle() {
+	public int getBtnFontStyle() {
 		return btnFontStyle;
 	}
 
-	public static void setBtnFontStyle(int btnFontStyle) {
-		BtnLayout.btnFontStyle = btnFontStyle;
+	public void setBtnFontStyle(int btnFontStyle) {
+		this.btnFontStyle = btnFontStyle;
 	}
 
-	public static int getBtnFontSize() {
+	public int getBtnFontSize() {
 		return btnFontSize;
 	}
 
-	public static void setBtnFontSize(int btnFontSize) {
-		BtnLayout.btnFontSize = btnFontSize;
+	public void setBtnFontSize(int btnFontSize) {
+		this.btnFontSize = btnFontSize;
 	}
 
-	public static Color getBtnBackgroundColor() {
+	public Color getBtnBackgroundColor() {
 		return btnBackgroundColor;
 	}
 
-	public static void setBtnBackgroundColor(Color btnBackgroundColor) {
-		BtnLayout.btnBackgroundColor = btnBackgroundColor;
+	public void setBtnBackgroundColor(Color btnBackgroundColor) {
+		this.btnBackgroundColor = btnBackgroundColor;
 	}
 
-	public static Color getBtnBorderColor() {
+	public Color getBtnBorderColor() {
 		return btnBorderColor;
 	}
 
-	public static void setBtnBorderColor(Color btnBorderColor) {
-		BtnLayout.btnBorderColor = btnBorderColor;
+	public void setBtnBorderColor(Color btnBorderColor) {
+		this.btnBorderColor = btnBorderColor;
 	}
 
-	public static int getBtnBorderThickness() {
+	public int getBtnBorderThickness() {
 		return btnBorderThickness;
 	}
 
-	public static void setBtnBorderThickness(int btnBorderThickness) {
-		BtnLayout.btnBorderThickness = btnBorderThickness;
+	public void setBtnBorderThickness(int btnBorderThickness) {
+		this.btnBorderThickness = btnBorderThickness;
 	}
 
 	public BtnLayout() {

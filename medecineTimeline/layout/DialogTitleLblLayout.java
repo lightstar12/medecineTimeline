@@ -11,16 +11,14 @@ public class DialogTitleLblLayout extends LblLayout {
 
 	public DialogTitleLblLayout(String text) {
 		// TODO Auto-generated constructor stub
+		setLblText(text);
+		setLblWidth(150);
+		setLblHeight(30);
+		setLblFontType("");
+		setLblFontStyle(Font.BOLD);
+		setLblFontSize(20);
+		setLblBackgroundColor(Color.white);
 
-		lblText = text;
-		lblWidth = 150;
-		lblHeight = 30;
-		lblFontType = "";
-		lblFontStyle = Font.BOLD;
-		lblFontSize = 20;
-		lblBackgroundColor = Color.white;
-		lblBorderColor = Color.black;
-		lblBorderThickness = 0;
 
 	}
 }

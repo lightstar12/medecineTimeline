@@ -10,14 +10,13 @@ public class TitleLblLayout extends LblLayout {
 
 	public TitleLblLayout(String text) {
 		// TODO Auto-generated constructor stub
-		lblText = text;
-		lblWidth = 100;
-		lblHeight = 100;
-		lblFontType = "";
-		lblFontStyle = Font.BOLD;
-		lblFontSize = 30;
-		lblBackgroundColor = Color.white;
-		lblBorderColor = Color.black;
-		lblBorderThickness = 0;
+		setLblText(text);
+		setLblWidth(100);
+		setLblHeight(100);
+		setLblFontType("");
+		setLblFontStyle(Font.BOLD);
+		setLblFontSize(30);
+		setLblBackgroundColor(Color.white);
+
 	}
 }

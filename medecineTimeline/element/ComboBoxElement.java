@@ -9,8 +9,8 @@ import javax.swing.plaf.FontUIResource;
 
 import layout.CBLayout;
 
+@SuppressWarnings("serial")
 public class ComboBoxElement<E> extends JComboBox<String> {
-	private static final long serialVersionUID = 1L;
 	
 	public void setComboBoxSize(int wSize, int hSize) {
 		this.setSize(wSize, hSize);
@@ -32,9 +32,9 @@ public class ComboBoxElement<E> extends JComboBox<String> {
 		// TODO Auto-generated constructor stub
 //		setCombo
 		setModel(new DefaultComboBoxModel<String>(itmes));
-		setComboBoxSize(CBLayout.cbWidth, CBLayout.cbHeight);
-		setComboBoxFontStyle(CBLayout.cbFontType, CBLayout.cbFontStyle, CBLayout.cbFontSize);
-		setComboBoxBackgroundColor(CBLayout.cbBackgroundColor);
-		setComboBoxBorder(CBLayout.cbBorderColor, CBLayout.cbBorderThickness);
+		setComboBoxSize(layout.getCbWidth(), layout.getCbHeight());
+		setComboBoxFontStyle(layout.getCbFontType(), layout.getCbFontStyle(), layout.getCbFontSize());
+		setComboBoxBackgroundColor(layout.getCbBackgroundColor());
+		setComboBoxBorder(layout.getCbBorderColor(), layout.getCbBorderThickness());
 	}
 }

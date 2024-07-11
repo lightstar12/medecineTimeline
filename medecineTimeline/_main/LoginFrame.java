@@ -52,8 +52,8 @@ public class LoginFrame implements ActionListener {
 		LoginPanel.loginBtn.addActionListener(this);
 		loginFrame.add("Center", LoginPanel.loginPanel);
 
-		loginMenuPanel = new LoginMenuPanel();
-		loginFrame.add("South", loginMenuPanel);
+		new LoginMenuPanel();
+		loginFrame.add("South", LoginMenuPanel.loginMenuPanel);
 
 		loginFrame.setVisible(true);
 

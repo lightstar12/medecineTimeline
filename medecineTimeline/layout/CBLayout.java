@@ -4,77 +4,77 @@ import java.awt.Color;
 
 public class CBLayout {
 	
-	public static int cbWidth;
-	public static int cbHeight;
-	public static String cbFontType;
-	public static int cbFontStyle;
-	public static int cbFontSize;
-	public static Color cbBackgroundColor;
-	public static Color cbBorderColor;
-	public static int cbBorderThickness;
+	private int cbWidth;
+	private int cbHeight;
+	private String cbFontType;
+	private int cbFontStyle;
+	private int cbFontSize;
+	private Color cbBackgroundColor;
+	private Color cbBorderColor;
+	private int cbBorderThickness;
 
-	public static int getCbWidth() {
+	public int getCbWidth() {
 		return cbWidth;
 	}
 
-	public static void setCbWidth(int cbWidth) {
-		CBLayout.cbWidth = cbWidth;
+	public void setCbWidth(int cbWidth) {
+		this.cbWidth = cbWidth;
 	}
 
-	public static int getCbHeight() {
+	public int getCbHeight() {
 		return cbHeight;
 	}
 
-	public static void setCbHeight(int cbHeight) {
-		CBLayout.cbHeight = cbHeight;
+	public void setCbHeight(int cbHeight) {
+		this.cbHeight = cbHeight;
 	}
 
-	public static String getCbFontType() {
+	public String getCbFontType() {
 		return cbFontType;
 	}
 
-	public static void setCbFontType(String cbFontType) {
-		CBLayout.cbFontType = cbFontType;
+	public void setCbFontType(String cbFontType) {
+		this.cbFontType = cbFontType;
 	}
 
-	public static int getCbFontStyle() {
+	public int getCbFontStyle() {
 		return cbFontStyle;
 	}
 
-	public static void setCbFontStyle(int cbFontStyle) {
-		CBLayout.cbFontStyle = cbFontStyle;
+	public void setCbFontStyle(int cbFontStyle) {
+		this.cbFontStyle = cbFontStyle;
 	}
 
-	public static int getCbFontSize() {
+	public int getCbFontSize() {
 		return cbFontSize;
 	}
 
-	public static void setCbFontSize(int cbFontSize) {
-		CBLayout.cbFontSize = cbFontSize;
+	public void setCbFontSize(int cbFontSize) {
+		this.cbFontSize = cbFontSize;
 	}
 
-	public static Color getCbBackgroundColor() {
+	public Color getCbBackgroundColor() {
 		return cbBackgroundColor;
 	}
 
-	public static void setCbBackgroundColor(Color cbBackgroundColor) {
-		CBLayout.cbBackgroundColor = cbBackgroundColor;
+	public void setCbBackgroundColor(Color cbBackgroundColor) {
+		this.cbBackgroundColor = cbBackgroundColor;
 	}
 
-	public static Color getCbBorderColor() {
+	public Color getCbBorderColor() {
 		return cbBorderColor;
 	}
 
-	public static void setCbBorderColor(Color cbBorderColor) {
-		CBLayout.cbBorderColor = cbBorderColor;
+	public void setCbBorderColor(Color cbBorderColor) {
+		this.cbBorderColor = cbBorderColor;
 	}
 
-	public static int getCbBorderThickness() {
+	public int getCbBorderThickness() {
 		return cbBorderThickness;
 	}
 
-	public static void setCbBorderThickness(int cbBorderThickness) {
-		CBLayout.cbBorderThickness = cbBorderThickness;
+	public void setCbBorderThickness(int cbBorderThickness) {
+		this.cbBorderThickness = cbBorderThickness;
 	}
 
 	public CBLayout() {

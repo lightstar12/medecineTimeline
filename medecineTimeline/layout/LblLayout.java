@@ -3,86 +3,86 @@ package layout;
 import java.awt.Color;
 
 public class LblLayout {
-	public static String lblText;
-	public static int lblWidth;
-	public static int lblHeight;
-	public static String lblFontType;
-	public static int lblFontStyle;
-	public static int lblFontSize;
-	public static Color lblBackgroundColor;
-	public static Color lblBorderColor;
-	public static int lblBorderThickness;
+	private String lblText;
+	private int lblWidth;
+	private int lblHeight;
+	private String lblFontType;
+	private int lblFontStyle;
+	private int lblFontSize;
+	private Color lblBackgroundColor;
+	private Color lblBorderColor;
+	private int lblBorderThickness;
 
-	public static String getLblText() {
+	public String getLblText() {
 		return lblText;
 	}
 
-	public static void setLblText(String lblText) {
-		LblLayout.lblText = lblText;
+	public void setLblText(String lblText) {
+		this.lblText = lblText;
 	}
 
-	public static int getLblWidth() {
+	public int getLblWidth() {
 		return lblWidth;
 	}
 
-	public static void setLblWidth(int lblWidth) {
-		LblLayout.lblWidth = lblWidth;
+	public void setLblWidth(int lblWidth) {
+		this.lblWidth = lblWidth;
 	}
 
-	public static int getLblHeight() {
+	public int getLblHeight() {
 		return lblHeight;
 	}
 
-	public static void setLblHeight(int lblHeight) {
-		LblLayout.lblHeight = lblHeight;
+	public void setLblHeight(int lblHeight) {
+		this.lblHeight = lblHeight;
 	}
 
-	public static String getLblFontType() {
+	public String getLblFontType() {
 		return lblFontType;
 	}
 
-	public static void setLblFontType(String lblFontType) {
-		LblLayout.lblFontType = lblFontType;
+	public void setLblFontType(String lblFontType) {
+		this.lblFontType = lblFontType;
 	}
 
-	public static int getLblFontStyle() {
+	public int getLblFontStyle() {
 		return lblFontStyle;
 	}
 
-	public static void setLblFontStyle(int lblFontStyle) {
-		LblLayout.lblFontStyle = lblFontStyle;
+	public void setLblFontStyle(int lblFontStyle) {
+		this.lblFontStyle = lblFontStyle;
 	}
 
-	public static int getLblFontSize() {
+	public int getLblFontSize() {
 		return lblFontSize;
 	}
 
-	public static void setLblFontSize(int lblFontSize) {
-		LblLayout.lblFontSize = lblFontSize;
+	public void setLblFontSize(int lblFontSize) {
+		this.lblFontSize = lblFontSize;
 	}
 
-	public static Color getLblBackgroundColor() {
+	public Color getLblBackgroundColor() {
 		return lblBackgroundColor;
 	}
 
-	public static void setLblBackgroundColor(Color lblBackgroundColor) {
-		LblLayout.lblBackgroundColor = lblBackgroundColor;
+	public void setLblBackgroundColor(Color lblBackgroundColor) {
+		this.lblBackgroundColor = lblBackgroundColor;
 	}
 
-	public static Color getLblBorderColor() {
+	public Color getLblBorderColor() {
 		return lblBorderColor;
 	}
 
-	public static void setLblBorderColor(Color lblBorderColor) {
-		LblLayout.lblBorderColor = lblBorderColor;
+	public void setLblBorderColor(Color lblBorderColor) {
+		this.lblBorderColor = lblBorderColor;
 	}
 
-	public static int getLblBorderThickness() {
+	public int getLblBorderThickness() {
 		return lblBorderThickness;
 	}
 
-	public static void setLblBorderThickness(int lblBorderThickness) {
-		LblLayout.lblBorderThickness = lblBorderThickness;
+	public void setLblBorderThickness(int lblBorderThickness) {
+		this.lblBorderThickness = lblBorderThickness;
 	}
 
 	public LblLayout() {

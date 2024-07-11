@@ -10,15 +10,14 @@ public class LoginBtnLayout extends BtnLayout {
 
 	public LoginBtnLayout(String text) {
 		// TODO Auto-generated constructor stub
+		setBtnText(text);
+		setBtnWidth(100);
+		setBtnHeight(30);
+		setBtnFontType("");
+		setBtnFontStyle(Font.BOLD);
+		setBtnFontSize(20);
+		setBtnBackgroundColor(Color.gray);
 
-		btnText = text;
-		btnWidth = 100;
-		btnHeight = 30;
-		btnFontType = "";
-		btnFontStyle = Font.BOLD;
-		btnFontSize = 20;
-		btnBackgroundColor = Color.gray;
-		btnBorderColor = Color.black;
-		btnBorderThickness = 0;
+		
 	}
 }
